@@ -1,0 +1,18 @@
+!1.
+Inline style -> inside the {{key:value}}
+
+<h1 style={{color:"red"}}></h1>
+
+!2.
+Js object
+
+const cartStyle = {
+    color : "red",
+    backgroundColor : "blue",
+    fontSize : "2rem"
+    fontStyle : "sanserif Arial"
+}
+
+<h1 style={cartStyle}></h1>
+
+!3. Using stylesheet

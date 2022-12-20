@@ -1,0 +1,11 @@
+The useContext hook is a function provided by the react library that allows functional components to consume value from context. It's a way to access the value from context without pass data from one component to other via props
+
+1. create context
+2. Create provider function and default export it
+3. this function will return context.Provider which accept value prop and have children which is all the components
+4. Wrap your <App /> with this provider
+5. create a hook at bottom using useContext(myContext)
+
+const useCartContext = ()=>useContext(myContext)
+
+and now we can use this look to get all the values in any component

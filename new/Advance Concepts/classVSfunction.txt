@@ -1,0 +1,44 @@
+Function ->
+Component made using normal js function is fbc
+It taks props as input and return jsx or null as o/p
+Function is not mutable, means we can't mutate it, thats why we use const[state, setSttae] = useState([])
+It means on everysingle render we get a new clean function
+In function based we have hooks and thus there is nothing like render tree like class
+
+once hit the bottom and returned its cant be alive
+
+StateLess cause it take i/p data and just display it on screen, main ficus is on UI
+
+No LCM, No constructor
+
+Class have constructor and have ti use diffetent syntac t use hooks
+
+
+Classbased -> Use JS class to make componet , which is inherit from react.component, have constructor in which we have all our state and prpos and to use prope we use this.props name, it have render method which returns jsx or null
+
+Anything which mounts on screen is a component(it can return jsx or null)
+
+
+we know that when we setState this cause rerender wether it is class (this.setState) or function setState
+
+Class is mutated and function not mutated
+When we change the state in it, the previous value is muted and get lost
+In class a single object get mutate over again and again
+in this we have render tree to pass state down in dom
+
+
+It used different life cycle methods which keeps it alive based on the compone t
+
+StateFull because it impement login and state
+Have lifecycle ethod like compone t did mount unmount did update
+
+
+
+
+When to use class?
+
+When component need state ot lifecycle method use class
+After 16.8 hooks comes now its recommended to use functional based component cause it replace all the lifecucle method and we have hooks like useEffect, useState to manage the state.
+
+Unless we want to use error boundries use function component
+

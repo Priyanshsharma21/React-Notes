@@ -1,0 +1,89 @@
+Redux is an open source state management library that you can use in your web and mobile application like react and react-native, 
+
+It works on global object and store all the state of your application there, it is unidirectional so you can access the state and can dispatch action to the store
+
+4 Steps for redux -> 
+
+1. Create Store -> 
+To create is we need two piece of information
+Reducer & State
+
+2. Reducer -> Create Reducer
+Reducer is a agent which do what we tell it to do
+It takes two information (state, action)
+
+
+3. Subscribe(selector) -> Get the current State
+
+4. Dispatch(dispatcher) -> dispatch the action
+
+1. npm i redux
+
+2. Create a store using createStore -> 
+store is used to hold your application states and allow you to dispatch actions into it
+
+
+3. We have reducer which takes current state and action, based on action type we can do logic and it return new state
+
+
+4. Action -> It is a object which tells what to do it have type property and payload
+
+5. We can't directly update the state, we need to dispatch the action to update the state
+
+6. uinf connext function we can connext the react with redux to send and state
+
+
+import { createStore } from 'redux';
+import { Provider, connect } from 'react-redux';
+
+// Define a reducer
+function counterReducer(state = 0, action) {
+  switch (action.type) {
+    case 'INCREMENT':
+      return state + 1;
+    case 'DECREMENT':
+      return state - 1;
+    default:
+      return state;
+  }
+}
+
+// Create a store
+const store = createStore(counterReducer);
+
+// Define a component
+function Counter(props) {
+  return (
+    <div>
+      <h1>{props.count}</h1>
+      <button onClick={props.increment}>Increment</button>
+      <button onClick={props.decrement}>Decrement</button>
+    </div>
+  );
+}
+
+// Map the state and dispatch functions to props
+function mapStateToProps(state) {
+  return {
+    count: state
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    increment: () => dispatch({ type: 'INCREMENT' }),
+    decrement: () => dispatch({ type: 'DECREMENT' })
+  };
+}
+
+// Connect the component to the store
+const ConnectedCounter = connect(mapStateToProps, mapDispatchToProps)(Counter);
+
+// Wrap the app in a Provider component
+function App() {
+  return (
+    <Provider store={store}>
+      <ConnectedCounter />
+    </Provider>
+  );
+}

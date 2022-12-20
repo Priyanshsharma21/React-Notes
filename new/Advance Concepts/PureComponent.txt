@@ -1,0 +1,6 @@
+Like react component but it handle shouldComponentUpdate method also
+
+When state and props change pure compone t wiull do shallow comparison on both props and state
+
+Component will not do so and rerender
+

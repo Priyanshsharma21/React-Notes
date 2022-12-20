@@ -1,0 +1,18 @@
+Virtual dom in in memory rep of real dom
+1. We have a real dom (browser dom) -> It provide abstractions
+Now react create a copy of it and whenever any changes took place it will re-render in the virtual dom, now virtual dom will compared with real dom and only changed part will get reflected
+
+
+Shallow dom ->
+Example we have a video component in our website, now you inspect it and you can't see play pause, progress tags in the dom how, this is the part of shallow dom
+
+Shallow dom allow us to create custome component(web component) or allow us to create element inside other element
+
+Parent- > video -> is shallow host
+Clild -> shadow components
+
+
+The whole process of keeping the copy of real dom and change, state change and so the node change are then compare with the real dom and that part get's updated and synced up is called reconciliation 
+
+
+Reconciliation -> whenever props and state changes then react deside wether actual dom change is necessary or not, react compare the realDom and virtual dom(updated) and if some nodes are changes it reflect that part on actual dom this process is called Reconciliation

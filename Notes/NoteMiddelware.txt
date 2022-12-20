@@ -1,0 +1,58 @@
+Middleware is a stuff that runs in b/w req and res from server
+Middleware must be normal function
+It have req,res,next property in it
+it runs before any route and It will execute all the functionality it have
+after thagt we have to call next()
+Such that further actions can be performed
+Middleware must be at top
+if we want a middleware to run on a pertcular route only then
+we can have multiple middleware
+
+app.get('/login',logger, (req, res) => {
+ res.send("Login karlo friends")
+})
+
+
+If we want all of the routes use it then 
+At top
+app.use(logger)
+
+
+function logger(req,res,next){
+    console.log(req.originalUrl)
+    next()
+}
+
+
+
+app.use(bodyParser.urlencoded({extended: true})); // this allow us to set information comming from form
+
+
+
+For a scenario -> If we want to check that wether user is authorized or not we can do it by adding middleware b/w req and res ->
+
+
+app.get('/admin', isAdmin, (req,res)=>{
+
+})
+
+const isAdmin = (req,res,next)=>{
+    console.log(it is admin bro)
+}
+
+is admin is our middleware contain req,res and next, which perform all the functionality and then using next we can call other middleware or we can directly get responce
+
+we can have multiple middlewared
+
+
+Some of the most common middlewares are ->
+1. body-parser
+this middleware help us to get all the information from the frontend
+by req.body
+
+2. cookie-parser
+get and set cookie, Parse cookie header and populate req.cookies. See also cookies and keygrip.
+
+cors
+to link frontend and backend
+Enable cross-origin resource sharing (CORS) with various options.

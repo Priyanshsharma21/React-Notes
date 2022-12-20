@@ -1,0 +1,9 @@
+Use to insure we give correct type of prop
+
+Navbar.prototype = {title : PropTypes.string.isRequired} // it is isRequired
+This is used to check if correct prop type pass 
+
+
+Default Props 
+Navbar.defaultProps = {title : "Set title here"}
+ this is default title if we dont pass prop then this will be the props

@@ -1,0 +1,30 @@
+!Normal function 
+
+function hello(name){
+    return "hello"+name;
+}
+
+!Arrow function 
+
+let greet = (name)=>{"hello"+name}
+
+!Example
+
+let numbers = [2,3,4,5,6,7,8,9]
+
+!normal function 
+
+let sum = 0
+number.forEach(function(value){
+   sum += value;
+})
+
+!Arrow funciton 
+
+let sum = 0
+numbers.forEach((value)=>{sum+=value})
+
+Note -> if one argument then no need to apply()
+If only return then no need of {return}
+
+numbers.map(x=>x*x);

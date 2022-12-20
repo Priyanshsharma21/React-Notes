@@ -1,0 +1,111 @@
+1. We divide our react app's in different components (bits of reusable code)
+2. This components can be reused
+
+
+
+Two type class and function but now function + hooks used and class will not be used in upcoming years in react
+
+!function components
+this are stateless or presentation component 
+class are stateful components
+
+function Piyu() {
+  retuen <>
+    <h1>Priyansh sharma</h1>
+  </>
+}
+
+reactDom.render(<Piyu />,document.getElementById('root'))
+
+!Props overviews
+
+function Piyu(props){
+  retuen <> <h2>I am {props.name} and my age is {props.age}</h2> </>
+}
+
+reactDom.render(<Piyu name="priyansh sharma" age="20", document.getElementById('root'))
+
+
+
+
+
+
+basic structure we will follow is 
+-public
+---index.html
+---styles.css 
+
+-src
+--component
+------App.jsx 
+---- -more component
+--index.js
+
+!-----------------------------------------------------------
+1. Index.js
+
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./app";
+
+ReactDOM.render(<App/>, document.getElementById("root"))
+
+!------------------------------------------------------------
+
+2. App.jsx
+
+import React from 'react';
+import Head from "./components.jsx";
+import List from "./list";
+
+
+function App(){
+  return <>
+    <Head />
+    <List />
+  </>
+}
+
+export default App;
+
+!---------------------------------------------------------------
+
+!component one 
+
+import React from 'react';
+
+function Head(){
+  return <>
+   <h1>My Favourite Foods</h1>
+   </>;
+}
+
+export default Head;
+
+!component 2
+
+import React from 'react';
+
+function List(){
+  return  <>
+  <ul>
+    <li>Bacon</li>
+    <li>Jamon</li>
+    <li>Noodles</li>
+  </ul>
+
+  </>;
+}
+
+export default List;
+
+----------------------------------------------------------------------------
+
+Functional based component -> 
+Use function to make your compont, more focus on UI cause stateless, conthave lifecycle methods it have hooks and once see return code will not execute and no render method in it
+it accept propes as an argiment
+
+class based -> component using class, extended from React.COmponet and have render function which retrn react element, statefull, logic and UI both focus, use lifecycle methods
+
+Itds render method return 
+we have constructor for props

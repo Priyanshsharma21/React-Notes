@@ -1,0 +1,69 @@
+
+Error Boundries (like catch but for component) is used in class based compone t to catch errors, such that our UI dont break and we know what is the error, and we display fallback UI for it
+
+No use for -> Server side render, event handler, async oprations
+
+use -> getDerivedStateFromError for render fallback UI and use componentDidCatch to log error
+
+
+React 15 -> unstable_handleError used
+in react 16 -> componentDidCatch 
+
+Can you guess the output of the below code?
+
+ 
+
+placesToVisit = ["Paris", "New York", "Switzerland"];
+costPerPerson = [2500, 1500, 4500]; //corresponding value as per above array
+
+ 
+
+totalAmount = null;
+
+ 
+
+function calculateCost(myChoice, noOfPeople) {
+  try {
+    for (i = 0; i < placesToVisit.length; i++) {
+      if (myChoice == placesToVisit[i]) {
+        totalAmount = costPerPerson[i] * noOfPeople;
+        console.log(totalAmount);
+      }
+    }
+  } catch (err) {
+    console.log("Some error occured");
+  }
+}
+
+ 
+
+calculateCost("Paris", 5);
+
+
+
+
+
+<html>
+<head>
+<style>
+    h1{color:blue;}
+    h1,p{color:yellow;}
+</style>
+</head>
+<body>
+<p>1</p>
+<h1>2</h1>
+<p style="color:green">3</p>
+<h1>4</h1>
+</body>
+</html>
+What will be the color of 1,2,3, and 4 when rendered in browser?
+
+
+
+myFun=function doSomething(a){
+    console.log(a*a);
+}
+// line 4
+code in order to invoke the function?.
+

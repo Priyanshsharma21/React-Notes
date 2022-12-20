@@ -1,0 +1,17 @@
+With the help of regular expression we can do indepth search in the text (string)
+
+Present b/w forward slashes
+
+
+ex ->
+
+My name is priyansh sharma and I'm a life lerner
+
+/e -> will search e in thetext 
+/e+e -> match and if more e like ee thn ot also
+/ea? -> match e and if a then also a
+/ea* -> r and e
+
+
+
+

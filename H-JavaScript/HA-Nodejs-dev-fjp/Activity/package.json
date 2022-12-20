@@ -1,0 +1,19 @@
+{
+  "name": "activity",
+  "version": "1.0.0",
+  "description": "CricInfo",
+  "main": "Activity.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Priyansh Sharma",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.26.0",
+    "excel4node": "^1.7.2",
+    "jsdom": "^19.0.0",
+    "minimist": "^1.2.5",
+    "nodemon": "^2.0.15",
+    "pdf-lib": "^1.17.1"
+  }
+}

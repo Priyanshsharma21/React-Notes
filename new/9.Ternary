@@ -1,0 +1,9 @@
+Condition use in js for render component on different conditions 
+
+!islogged()?<h1>Hello</h1>:<h1>Bye</h1>
+
+condition?if true : else
+
+! And && (If condition true then execute expression otherwise null )
+
+{currentTime==12 && <h1>Work Hard</h1>}

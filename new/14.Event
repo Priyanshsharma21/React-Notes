@@ -1,0 +1,67 @@
+An action occurs on trigger of some other action of some other action is event 
+This action can be mouse click or mouse over, onchange
+
+React event handel system is called synthetic event
+
+reactApp-----bulid/modify----virtualdom------dom browser
+|--------deliver---|----deliver---|----deliver-------|
+
+Rules -> use camelCase insteed of lowercase and pass function inside jsx
+!In html 
+<button onclick="doThis()"></button>
+!In React
+<button onClick = {doThis} />
+
+
+
+1.function ActionLink() {  
+    function handleClick(e) {  
+        e.preventDefault();   // Use preventDefault to preserve default behavious
+        if we are using usestate then
+        console.log('You had clicked a Link.');  
+    }  
+
+    const handleChange = (e)=>{
+        setValue(e.target.value)
+    }
+    return (  
+        <h1 onchange = {handleChange}
+        <a href="#" onClick={handleClick}>  
+              Click_Me  
+        </a>  
+    );  
+}
+
+
+
+
+2. Argument in event handeler takes callback function 
+function ArgsExample(){
+
+    function doThis(args){
+        alert(args);
+    }
+
+    return (<>
+    <button onClick = {()=>{
+        doThis("goal")
+    }}
+    
+    </>)
+}
+
+3. React event object (what type of event occured)
+
+function ArgsExample(){
+
+    function doThis(args, e){
+        alert(e.type);
+    }
+
+    return (<>
+    <button onClick = {(event)=>{
+        doThis("goal",event)
+    }}
+    
+    </>)
+}

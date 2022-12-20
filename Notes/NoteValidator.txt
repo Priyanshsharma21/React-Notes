@@ -1,0 +1,36 @@
+Express validator is used to validate the fields 
+They are the set of middlewares
+If we want email but user entred some invailed email then we need this
+
+The validator as we know they are the milddlewares,
+we put them b/w req and res
+
+we will put this validator in our routes files
+
+app.post(
+    '/comment',
+
+    !validators
+    body('email').isEmail().normalizeEmail(),
+    body('text').not().isEmpty().trim().escape(),
+    body('notifyOnReply').toBoolean(),
+
+
+    (req, res) => {
+    },
+);
+
+
+ body("name","Name should be at least 3 characters").isLength({min : 5}),
+    body("email","Email is required").isEmail(),
+    body("password","Password should be at least").isLength({min : 5})
+
+
+    In controller of that post route we will check the isValidate
+
+    const errors = validationResult(req)
+    if(!errors.isEmpty()){
+        return res.status(422).json({error : errors.array()[0].msg})
+    }
+
+    at the top

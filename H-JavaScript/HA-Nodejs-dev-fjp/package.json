@@ -1,0 +1,18 @@
+{
+  "name": "ha-nodejs-dev-fjp",
+  "version": "1.0.0",
+  "description": "New Module",
+  "main": "Activity.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Priyansh sharma",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.26.0",
+    "cric-live": "^1.0.19",
+    "cricketstats": "^1.0.4",
+    "crickrandom": "^1.3.3",
+    "minimist": "^1.2.5"
+  }
+}

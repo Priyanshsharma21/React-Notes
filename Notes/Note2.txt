@@ -1,0 +1,100 @@
+We always starts with backend 
+Every backend contain of 3 main parts
+
+
+1. Routes -> where all the routes used in the project present
+ex-> 
+router.get('/', getPost)
+router.post('/',createPost)
+router.patch('/:id',updatePost)
+router.delete('/:id',deletePost)
+router.patch('/:id/likePost',likePost)
+
+
+
+
+2. controllers -> where actual logic of routes present -> action happen when someone visit that route
+ex->
+
+
+// /post/123 
+export const updatePost = async(req,res)=>{
+    const {id} = req.params;
+    const { title, message, creator, selectedFile, tags } = req.body;
+
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No Post Of That ${id}`);
+
+    const updatedPost = { creator, title, message, tags, selectedFile, _id: id };
+
+    await PostMessage.findByIdAndUpdate(id, updatedPost, {new : true})
+
+    res.json(updatedPost);
+}
+
+export const deletePost = async(req,res)=>{
+    const {id} = req.params;
+
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No Post Of That ${id}`);
+
+    await PostMessage.findByIdAndRemove(id)
+
+    res.json({message : "Post Deleted Successfully"});
+}
+
+
+
+3. Models -> where the model of our project present
+ex-> posts model
+
+
+import mongoose from 'mongoose';
+
+// create schema
+const postSchema = mongoose.Schema({
+    title : String,
+    message : String,
+    creator : String,
+    tags : [String],
+    selectedFile: String,
+    likeCount : {
+        type: Number,
+        default : 0
+    },
+    createdAt : { 
+        type : Date, 
+        default : new Date()
+    }
+})
+
+!Models example of youtube video 
+
+const videoSchema = mongoose.Schema({
+    video : {
+        required : true,
+        type : String,
+    },
+    title : String,
+    desctiption : String,
+    stats : [
+        views : Number,
+        like : Number,
+        dislike : Number
+    ],
+    channel : [
+        name : String,
+        subs : Number
+    ],
+    comments : [
+        userImg : String,
+        userName : String,
+        commentMessage : String,
+        likes : Number,
+        dislikes : Number,
+    ]
+})
+
+
+//create model
+const PostMessage = mongoose.model('PostMessage', postSchema)
+
+

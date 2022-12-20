@@ -1,0 +1,52 @@
+To make small array or object we use it 
+
+If we want to make sacdwitch we take only necessary items from fridge not whole fridge 
+
+In array or object we took only necessary items not whole array or obj 
+
+!1.
+const item1 = [A,B,C,D,E]
+const item2 = [Q,W,E,R,T]
+
+cosnt [a,b,...rest] = item1
+
+comsole.log(a)
+comsole.log(b)
+comsole.log(rest
+
+!2) best use in functions and objects 
+!Can set default values too
+
+function sumandMulti(a,b){
+    return[a+b,a*b]
+}
+
+const [add,multiply,division='No Division'] = sumandMulti(2,6)
+console.log(add)
+
+
+
+! 3. object 
+
+const ids = {
+    name : "Priyansh sharma",
+    roll : "0808CS191147,
+    class: "CSE3"
+    result : {
+        compiler : 53,
+        network : 62
+    }
+}
+
+const {name:fname,roll,language="Python"} = ids
+const {name,roll,class,result:{city}} = ids
+!Note is value present in object then default value will be ignored and if not present then be used
+*Also we can map obj values
+
+! In function 
+
+function details({name,roll,age:20}){
+    return `name is ${name} and roll number is ${roll} na age is ${age}
+}
+
+details(ids)

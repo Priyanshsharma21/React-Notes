@@ -1,0 +1,359 @@
+Element vs Component
+Element is plain object appear on screen contain more element, creating it is cheaper
+
+<div></div>
+
+Component can be of class or function based
+It takes props as input and return jsx as o/p
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+In react setState() is asyncronized function in which we will get the prev state and we can update the next state using it
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+In html we can use inline event handler, with false -> preventDefault()
+<a href='#' onclick='console.log("The link was clicked."); return false;' />
+
+In react we have can define the function in event and then using event.preventDefault we can prevent default behaviour of it.
+
+
+Synthentic events are the cross browser wrapper arount browser native events-> abstraction (dewveloper intrect with se and SE with native dom events)
+
+
+
+
+
+
+
+
+
+
+
+when we iterate over a array or object we use map, filter, reduce, find, findIndex and in ehich we use arrow function which have 2 params one data and other is index
+
+we can use this index as key in any component or jsx which tells react to uniquly identify the element
+
+Not recommended but can use, use any unique id instead in case of API
+
+
+
+
+
+
+
+
+
+
+
+
+
+Refs are used to get referance of a element they are mojorly used when we want to do dom manipulation we can use useRef hook to create a ref and it have current property which have the details of the element
+
+Ref forwarding is use to forward ref of a element as props to other component
+
+
+
+
+
+
+
+
+
+React 15 is react stack
+React Fiber is new version of react 16.8
+React fiber is prety new, it is new reconcilation engine or re implementation of core algo in react.
+Goal -> Inc sutaiblity for layout, animation, gastures, ability to pause, abort, resume different updates
+
+Fiber split your task into many frames(chunks) such that main tread do what is important to user like updating the UI
+
+1. split work in chunks
+2. Priotrize, reuse, rebase work in progress
+3. Ability to return multiple elements from render
+better support for error boundries;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Controlled and uncontrolled value 
+Example you have a form and it have onSubmit handler
+
+Now you are using ref(useRef hook) to target the element and when you submit the form you will get the value in item.current.value -> this is unciontrolled component
+
+If you are using onChange handler and you are using a state(useState) this comes under controlled component
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+createElement is -> jsx is just the replacement of createElement which will create an element of some type like
+
+React.createElement('div', 'hello', 'main')
+
+and cloneELement is used to clone an existing element
+
+
+
+
+
+
+
+
+
+
+
+When two child use the same state then we can lift th state to partent component and then pas it as props to child
+
+
+
+
+
+
+
+
+
+
+
+IOn order to access the props of perant component we have to use super
+
+
+
+
+
+
+
+
+
+
+
+If we want to change the value dynamically then we can use 
+
+import React, { useState } from 'react'
+
+const initialState = {
+  firstName : '',
+  lastName : '',
+  email : '',
+  password : '',
+  confirmPassword : '',
+}
+
+const Auth = () => {
+    const navigate = useNavigate()
+    const [showPassword, setShowPassword] = useState(false)
+    const [isSignUp, setIsSignUp] = useState(false)
+    const [formData, setFormData] = useState(initialState)
+    const classes = useStyles()
+    const dispatch = useDispatch()
+
+    const handleSubmit = (e)=>{
+      e.preventDefault();
+    }
+
+    const handleChange = (e)=>{
+      setFormData({...formData, [e.target.name] : e.target.value })
+    }
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+          <Input name="firstName" label="First Name" handleChange={handleChange}  />
+          <Input name="lastName" label="Last Name" handleChange={handleChange}   />
+          <Input name="email" label="Email Address" handleChange={handleChange} type="email"/>
+          <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? "text" : "password"}/>
+            
+          <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" />
+          
+          <Button type="submit">
+            SignIn
+          </Button>
+      </form>
+    </div>
+  )
+}
+
+export default Auth
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+To Many rerenders -> inside a event call or a fucntion ->
+<Input handleChange={handleChange()}  /> // dont do this
+instead do
+<Input handleChange={()=>handleChange()}  /> // do this
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+React fragment -> In react fbc we used to return jsx and inside the return statement when we return jsx it should not be wrapped in one wrapper which is react fragment we can also have empty react fragment
+
+It is used to group multiple childs
+
+Fragment is an cheap operation as compare to a container which will an an another element in a dom
+Fragment is not added in dom and hence increase the performance
+It also works good with css
+
+
+
+React portal ->
+Sometimes we want to write code outsu=ide of the root element which is the parent of all the component we can use react portal
+
+ReactDOM.createPortal(child, container)
+
+ReactDom.createPortal(<div></div>, document.getElementById("other-root"))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Validation on props -> React automaticlly do it in development mode but we can use proptype
+
+
+ex -> function User({name,age}){
+    return (<>
+    <h1>{name}</h1>
+    <h1>{age}</h1>
+    </>)
+}
+
+
+User.propType = {
+    name : Proptype.string.isRequired
+    age : Proptype.number.isRequired
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+For static type chacking use Typescript reather than proptype
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+react dom packge provide dom specific methods like render createPortal, findDomNode() etc.
+
+ReactDom.render used to render element into dom, it take element,container,callback
+
+If element exist in dom then it will update it, virtualdom concept and after update optional callback will execute
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Strict mode is useful for highlighting problems in your app, like React.Fragment it dosnt add any new element to dom
+It do some additional check and gives warning

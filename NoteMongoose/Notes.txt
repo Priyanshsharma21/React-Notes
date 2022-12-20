@@ -1,0 +1,18 @@
+Mongoose is Object Data Modeling for Mongodb and Nodejs
+We can store our data in json format which reduce the complaxity of your application
+It represent relation, provide schema validation and store objects in the database
+
+
+
+
+
+Collection -> Like tables in sql, we can have multiple collections like user, product
+Document -> Equivalent to row in sql.
+Fields -> Attributes, just like column in tables
+Schema -> How your data looks like, structure of database    
+Model -> Higher order constructor which take document and create instance of it in database
+Query -> the query you are going to make
+
+Initialy data is been stored as binary object model which is expencive
+virtuals are not stored in mongoose db
+they are just use to set and get the value from the db

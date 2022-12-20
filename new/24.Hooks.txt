@@ -1,0 +1,29 @@
+At first class based component are used in react 
+Later due to easynessa and increase in demand of functional based component react hooks are created 
+with Hook we can do everything using hooks what we do in class based component 
+Create state, pass props, handle lifecycle methods, work with dom.
+
+!Hooks 
+Features of class based component and in function based components 
+Allow to use state and other react features like props without class 
+Hooks are function which hook into react state lifecycle features from function compontnt
+
+Common used 
+
+!UseState
+Update state and set initial value
+
+const [text, settext] = useState("current value")
+
+!useEffect 
+What we do in componentDidMount
+When component update and we want to perform some actions(effects) we use this
+As text change we want alert comes 
+
+!useContect
+when we have many nested components and we want to send props from one to other we use this
+with useContext it provide functions globally so we can access it from anywhere
+
+!useRef
+Return mutable referance object
+it have .current in which we have our some dom element (referance of element)

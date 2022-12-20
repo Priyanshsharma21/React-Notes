@@ -1,0 +1,20 @@
+Props are arguments pass as html attributes in components
+Read-only can't change value of props 
+
+!1. Example
+function Car(props) {
+  return <h2>I am a { props.brand } and I also have {props.details.name} and model is {props.details.model}!</h2>;
+}
+
+function Garage() {
+  const carName = "Ford"; // beforw we wruite js after return jsx 
+  const details = {name : 'Mustang', model:"007"}
+  return (
+    <>
+      <h1>Who lives in my garage?</h1>
+      <Car brand={ carName } details={details} />
+    </>
+  );
+}
+
+reactDom.render(<Garage/>, document.getElementById('root'))

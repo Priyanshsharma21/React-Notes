@@ -1,0 +1,16 @@
+Advantage : 
+1. Performance good because of Virtual DOM
+2. Easy to test using JEST
+3. Easy integration cause only view layer hence.
+4. Flexiblity
+5. JSX makes easy and more readable, reusable code
+6. HotReloading
+7. Both client and serversite rendering
+
+
+limitation : 
+1. difficult for beginner
+2. Overenginner due to lot's of components
+3. Only a view library not a complete framework
+4. Dificult to intregrtaye to MVC
+5. inline code increase the complexity

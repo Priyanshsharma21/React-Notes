@@ -1,0 +1,42 @@
+!The series of events happen with a component from its mounting to unmounting
+Mounting - Birth of component(when it comes in existance)
+update - Growth of a component
+Unmounting - Death of a compontnt
+
+
+!Methods of lifeCycle ->
+
+1. Render ->
+Use to render html(jsx) in react app,
+use by class bases component, 
+use in mounting and updating,
+In this cant update state
+
+Render is also a lifecycle method which will transpile the code babel so browser can understand it
+ 
+
+
+2. componentDidMount()
+once our jsx,html render on dom this method runs after that
+can change state in it 
+working -> 
+1. constructor will run -> render method -> react update dom and refs -> componentdidmount()
+
+
+
+
+3. componentDidUpdate()
+It runs when our component changes(updates) like new Props or state changes 
+Api resounce changes
+
+props change, setState runs or forceUpdate() -> render method -> react update dom and refs -> componentDidUpdate()
+
+4. componentWillUnmount()
+Just before unmount of a component we use this 
+Use in cleanup resources
+
+unmount when we cleanup
+
+
+
+

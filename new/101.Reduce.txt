@@ -1,0 +1,28 @@
+for example  : 
+-------------------------------
+let sum = 0;
+let numbers = [1, 2, 3, 4, 5, 6, 7,8]
+
+for (let i=0; i<=numbers.length; i++){
+    sum += numbers[i]
+}
+
+this whole thing can be done using array.reduce()
+
+-----------------------------------
+
+
+numbers.reduce(()=>{}, 0) 
+array.reduce(callback, initialValue)
+
+callback have accumulator and current value of array (iteration value)
+
+numbers.reduce((cv,n)=>{
+    cv + n
+},0)
+
+
+
+
+
+

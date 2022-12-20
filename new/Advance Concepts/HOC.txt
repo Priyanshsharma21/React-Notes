@@ -1,0 +1,4 @@
+function which takes component as i/p and returns a new component as o/p
+HOC is just a wrapper component it takes component as i/p
+
+we can pass an component as props to this HOC and we can get it as props in HOC component and we can use it as normal component bu modifying anyhing

@@ -1,0 +1,14 @@
+You are not sending the chunks
+In which you send the whole cooked part to client which is HTML so it takes less time to load.
+
+
+Perciously -> website only have html some css and js and no worries, hosted on serverna dn client fetch it
+
+Now lot of complexity in website
+
+Working : 
+1. Req to server
+2. Server render HTML and pre populate it with data
+
+3. Server send HTML to client
+4. Client make req to server for more data

@@ -1,0 +1,14 @@
+Everything inside have access to its own variables and outer variables 
+We have global variables can be accessed throught programe
+Now we have function inside another function 
+
+function outerfunction(outer){
+    const outer2 = "Hello everyone"
+    function innerfunction(inner){
+        console.log(outer)
+        console.log(inner)
+        console.log(outer2)
+    }
+}
+
+const myFunction = outerfunction("outer")

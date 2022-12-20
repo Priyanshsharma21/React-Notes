@@ -1,0 +1,25 @@
+When behaviour of your component depend on state then it is statefull(class) else stateless and function
+
+Statefull -> class in which state initlize inside the constructor
+
+react 15 -> react stack
+
+class App extends Component {
+constructor(props) {
+super(props)
+this.state = { count: 0 }
+}
+render() {
+
+}
+}
+
+React Fiber -> react 16.8 and above
+
+import React, {useState} from 'react';
+const App = (props) => {
+const [count, setCount] = useState(0);
+return (
+// JSX
+)
+}

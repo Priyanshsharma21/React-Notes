@@ -1,0 +1,23 @@
+Both are used to hold some information, which may change over time.
+
+we can pass state from one component to other which depent on owner and need, wether a compone t should share itds state
+
+Props are input to component, just like html attributr naming combentin we can use prips to send data from parent to child component
+
+we can send state, or setState also
+
+Note -> direct update the state like
+
+const [state, setState]= useState("Priyansh")
+
+state="shreyansh"
+this will not cause rerenedr and not update the virtual dom
+
+setState("shreyansh") will make change in virtual dom and hance correct
+
+
+state can be change but props can't
+
+
+The React philosophy is that props should be immutable and top-down. This means that
+a parent can send any prop values to a child, but the child can't modify received props.

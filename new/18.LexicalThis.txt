@@ -1,0 +1,22 @@
+!Normal this 
+
+const emp = {
+    id : 1,
+    greet : function(){
+        let self = this
+        setTimeout(function(){console.log(self.id)},1000) // this function have context of outer function
+    }
+}
+
+emp.greet();
+
+!Arrow function 
+
+const emp = {
+    id : 1,
+    greet : ()=>{
+        setTimeout(()=>{
+            console.log(this.id) // now this refer to its parent 
+        },1000)
+    }
+}

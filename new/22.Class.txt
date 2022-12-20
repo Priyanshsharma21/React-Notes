@@ -1,0 +1,19 @@
+Class based is different than function based 
+
+import React, { Component } from 'react'
+
+export class NewsItem extends Component {
+
+     constructor(){
+    super()
+  } // whenevr the obj of this clas created then constructor runs to initlize its instance
+
+  render() {
+    let{title, url, photo} = this.props // use props like this
+    return (
+      <div>Here er{title} render our components, elements</div>
+    )
+  }
+}
+
+export default NewsItem

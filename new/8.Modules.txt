@@ -1,0 +1,23 @@
+In react we have to import and export files often so 
+
+!1. Math.jsx
+
+const PI = 3.14
+
+function double(x){
+    return x*x
+}
+
+function triple(x){
+    return x*x*x
+}
+
+export default PI
+export {double,triple}
+
+
+2. 
+import * as PI form "./Math.jsx"
+import {double,triple},PI from "./Math.jsx"
+
+!Node -> when we exports default then we can name our component with any name

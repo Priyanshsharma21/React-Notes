@@ -1,0 +1,366 @@
+In any mern project we go through few steps first : 
+1. File nd folder structore which is created as :
+    1.1 -> client and server
+    1.2 -> server- > npm init -y and then install all the dependncy using npm i name
+
+    1.3 -> setup file and folder structure in server side                      
+        1.3.1 -> First is model which contain our mongoose database Models
+        Like how our database look like, what data we want to store, what data we need
+        1.3.2 -> Routes folder will have all the routes 
+        1.3.3 -> controllers section have defination to that particular route we created in Routes
+
+
+Package.json file is the entry point of all the dependency which get install in your system
+
+*--------------------------------------------------------------------------------------------
+
+Mongoose -> Working with mongodb is easy but to perform variour operations in it we need some type of object modeling and mongoose is that onject modeling
+
+Create a file in models must be singular like -> user,post etc.
+
+*--------------------------------------------------------------------------------------------
+Virtuals -> 
+for example we have 
+
+-> Schema
+const personSchema = new Schema({
+  name: {
+    first: String,
+    last: String
+  }
+});
+
+-> Model
+const Person = mongoose.model('Person', personSchema);
+
+->Creating new person
+const axl = new Person({
+  name: { first: 'Axl', last: ' ROSE` ' }
+});
+
+If we want full name then we will be doing something like this ->
+console.log( axl.name.first + " " + axl.name.last)
+
+This is a bit of clumsy so we can use virtuals for this,
+Virtuals are use to extract extra piece of informations from the data user has entered
+Some of the data we can't say user to enter like plese enter the domain of your email -> wether you are using gmail,yahoo,hotmail etc
+
+We have to extract this piece of information from the email adress user has entered
+
+
+
+ex-> If user wants full name then we can use this get and set method with virtuals
+
+const personSchema = new Schema({
+  name: {
+    first: String,
+    last: String
+  }
+});
+
+
+personSchema.virtual('fullName').get(()=> {
+  return this.name.first + ' ' + this.name.last;
+});
+
+and now by
+console.log(axl.fullName); // Axl Rose
+
+
+personSchema.virtual('fullName').
+  get(function() {
+    return this.name.first + ' ' + this.name.last;
+  }).
+  set(function(v) {
+    this.name.first = v.substr(0, v.indexOf(' '));
+    this.name.last = v.substr(v.indexOf(' ') + 1);
+  });
+
+
+  Like I entred Priyansh Sharma then -> 
+  v = Priyansh Sharma
+  this.name.first = Priyansh (0," ")
+  this.name.last  = Sharma
+
+
+Same thing we want for email then ->
+
+const userSchema = mongoose.Schema({
+  email : String,
+  password : String
+})
+
+userSchema.visuals('mail').get(function(){
+  return email
+}).set(function(v){
+  const mail = v.substr('@',v.length-1)
+  this.email = mail
+})
+axl.fullName = 'William Rose'; // Now `axl.name.first` is "William"
+
+!---------------------------------Mongo vs SQl------------------------------
+
+?                                            Databases
+-> In order to store out data we need a Databases
+-> Two type SQL(Sequal query lang) and noSqul(not only Squl)
+-> Most popular is SQl, MySQL, MONGODB
+
+TODO-> SQL, databases are the databases in which data store are related data 
+TODO ,all the data are stored in form of relation or table.
+TODO ,Databases-> Collection of relted data
+TODO, DBMS -> AN software used to manupulate that data like SQL 
+TODO-> Adv is it is good at maintain relationship
+TODO-> Dis-> In SQL databases when we dont place any value to the tabe it place null in front of it 
+TODO-> In sql we can create an seprate table for product customer and link it 
+TODO->it protect data redunancy, This is how we can join two tables 
+TODO-> Best use when we have to store data in table hving relation with each other 
+TODO-> When we scale the data as millions trillions bits of data is been generated then this is an issue in sql
+TODO-> It is like placing an floor above floor until you reach the sky
+
+*-> In Mongo -> Data stored in form of key value pair means json format
+*,so if you have extra data its not a problem in it,
+*,It dosent follow a strict structure
+*-> Not strict but bad at relationship
+*-> We can maintain relations in mongo too but it is little clumsy
+*-> Best when we have unstructured data like videos audios images
+*-> Scability is not an issue it this database bacause it is like you are scaling an colony
+
+
+
+! pros and cons ->
+
+?1. -> SQL is more mature and old
+TODO-> Mongo is new
+
+?2. ->SQL Table structure but 
+TODO ->mongo is document structiore 
+
+?3 ->SQL require a schema(Proper structure) before Storing data
+TODO-> MONGO is more flexible to change
+
+?4 -> SQL is great when there are lots of relationships
+TODO-> MONGo is not good at relational data
+
+?5-> SQL scale vertically
+TODO-> MOngo scale horizontally
+
+*6. Nesting is easy in Mongo as compare to SQL
+
+--------------------------------Mongodb Commands-----------------------------------
+
+In mongodb 1. start your server by mongod on 27017 port
+Second run mongo to enter mongo shell and use Mongodb
+
+
+*1. Create ->
+db -> to see current database
+show dbs -> to see all the database created
+use dbName -> use gymDb -> to create database
+delete the document -> db.dropDatabase()
+cls to clear the database
+
+
+appDb -> database
+users -> collection
+db.users.insertOne({name : "Priyansh"}) -> document
+
+Insert data
+db.collection.insertOne()
+db.collection.insertMany() // if no collection then it create one for us
+
+ex->
+collection is like table in sql 
+
+? db.users.insertOne(){
+?    key:value,
+?    key:value
+?}
+
+db.product.insertOne(
+    {
+        id:1,
+        name:"pen",
+        price:5.89
+    }
+)
+
+InsertMany -> Takes array of object's
+db.product.insertMany([
+    {
+        id:1,
+        name:"pen",
+        price:5.89
+    },
+     {
+        id:2,
+        name:"Pencil",
+        price:3.89
+    }
+
+
+    ]
+)
+
+2. show collections -> see all the collections
+
+
+*2. Read->
+
+db.collection.find()-> db.product.find() => this will return all the objects
+db.collection.find().limit(2) -> get only two 
+db.collection.find().sort({name : -1 or 1}).limit(2) -> get only two -> sort alphabatically
+db.collection.find().sort({name : 1, agr:1}).limit(2) -> get only two -> sort alphabatically and age
+db.collection.find().skip(1).limit(2) -> get only two -> skip 1
+
+
+Specific-> -> pass first parameter for query and second for what we want (1-> want, 0-> not want)
+db.collection.find({query}, {projection})
+-> db.product.find({name:pen}) -> return that data
+
+find(<filterObject>, <selectObject>)
+db.users.find({ name: “Kyle” }, { name: 1, age: 1 }) // return only name and age fields
+db.users.find({}, { age: 0 }) // return all the fields but dont return the age
+db.users.findOne({name : 'kayl'}) // return the first occurance
+db.users.countDocuments({ name: “Kyle” }) // return count
+
+Complex queies -> starts with $
+-> db.product.find({price:{$gt : 6}}) -> price greater than 6 comes
+-> db.product.find({price:{$gte : 6}}) -> price greater than equal to  6 comes || same for lt lte
+-> db.product.find({name:{$eq : 'priyansh'}}) -> return name equal to priyansh
+-> db.product.find({name:{$neq : 'priyansh'}}) -> return name not equal to priyansh
+-> db.product.find({name:{$in : ['priyansh','shreyansh']}}) -> return if name is present in array
+-> db.product.find({age:{$exists :true}}) -> return all with age
+
+
+-> db.product.find({age:{$gte : 20, $lte: 40}}) -> age gte 20 and lte 40
+-> db.product.find({age:{$gte : 20, $lte: 40}, name:'priyansh'}) -> age gte 20 and lte 40 and name priyansh
+
+More Complex queies -> starts with $
+
+-> db.product.find({$and:[{age : 26},{name : 'ps'}]}) -> return if both true
+-> db.product.find({$or:[{age : {$lte : 20}},{name : 'ps'}]}) -> return if any true
+
+
+-> db.product.find({$expr: {$gt : ["$debt", "$balance" ]}}) -> return those docs which have debt greater than balance
+$ -> to get only columns
+
+
+*3. Update->
+
+-> db.product.updateOne( {id:1}, {$set:{stocks:36}} )
+-> db.product.updateOne( {thingToUpdate : value}, {$set:{updatedPart:updatedValue}} )
+updateOne
+db.users.updateOne({ age: 20 }, { $set: { age: 21 } })
+!Update the first document that matches the filter object 
+!with the data passed into the second parameter which is the 
+!update object
+?Update the first user with an age of 20 to the age of 21
+?updateMany
+
+
+db.users.updateMany({ age: 12 }, { $inc: { age: 3 } })
+!Update all documents that matches the filter object with the 
+!data passed into the second parameter which is the update 
+!object
+?Update all users with an age of 12 by adding 3 to their age
+?replaceOne
+
+
+db.users.updateMany({ name: 'priyansh' }, { $rename: { name : 'Shreyash'} }) -> rename a prop
+
+
+db.users.updateMany({ name: 'priyansh' }, { $unset: { name : ''} }) -> unset the prop
+
+
+db.users.updateMany({ name: 'priyansh' }, { $push: { hobbies : 'Swim'} }) -> Add in array
+
+
+db.users.updateMany({ name: 'priyansh' }, { $pull: { hobbies : 'Swim'} }) -> remove in array
+
+
+db.users.updateMany({name : {$exist : 1}}, {$unset : {name : ''}}) -> remove addrewss from all
+
+db.users.replaceOne({ age: 12 }, { age: 13 }) -> replace will put the whole (put opration)*
+!Replace the first document that matches the filter object 
+!with the exact object passed as the second parameter. This 
+!will completely overwrite the entire object and not just 
+!update individual fields.
+
+?Replace the first user with an age of 12 with an object that has the age of 13 as 
+?its only fiel
+
+
+*4. DELETE
+
+-> db.products.deleteOne({id:2})
+
+
+deleteOne
+db.users.deleteOne({ age: 20 })
+!Delete the first document that matches the filter object
+?Delete the first user with an age of 20
+
+deleteMany
+db.users.deleteMany({ age: 12 })
+!Delete all documents that matches the filter object
+?Delete all users with an age of 12
+
+
+5. Relationships
+
+db.products.insertOne(
+    {
+        id:4,
+        name:"rubber",
+        price:5,
+        stocks:500,
+        reviews: [
+            {
+                name : "raju",
+                rating: 5,
+                review : "The best rubber in the solar system"
+            },
+
+            {
+                name : "Kaju",
+                rating: 5,
+                review : "Nice rubber"
+
+
+            }
+        ]
+
+  }
+)
+
+This is one to many relationship in the product document
+
+db.products.insertMany(
+    {
+    id:1,
+    name:"pen",
+    price:5
+    }
+
+    {
+        id:2,
+        name:"pen",
+        price:9
+    }
+
+    {
+        product_id:34345,
+        productOrder : [1,2]
+    }
+)
+
+product order contain both the order
+
+
+
+TODO   Now in order to combine MongoDb with our Nodejs we use -> Mongodb native driver and mangoose
+
+! 1. Mongo native driver
+! 2. Mongoose 
+Use mongoose docs inside the apis
+

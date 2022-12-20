@@ -1,0 +1,147 @@
+0. Backend consist of Server nd Databases and applications
+When we enter our details on website it store on backend and wheneer we came back to website it lodes from there only 
+We use node js for this purpose to intrect with server 
+
+
+
+1. Nodejs
+
+Node is a process to run js in backend
+It is  a programe
+An runtime compiler
+Platform
+Runtime enviroment
+Server Side language to communicate, indpendent of browser 
+
+it have some library like http and all.
+also have npm in which library of all people kept we write npm install _____ and it get install
+when we write node app.js then node started reading the file one by one and execurte it
+
+
+To run node file that we created we use hyper terminal 
+In hyper terminat we have to reach to the file and write 
+
+2. node file_name.js
+
+and boom we are running that file
+
+3. REPL - Read Evulation Print Loop
+Inside hyper if we write Node - We enter into REPL and now we can write code directly.
+
+>
+3+2 = 5
+
+
+4. To exit use 
+.exit and for clear to clr
+
+5. We cn use internal packages of nodejs documentation nd 
+6. If we wanna use exetrnal packages we can use npm - node package module
+
+go to npmjs.com and we get packages now in hyper we can install package in our dir
+It is a library
+
+7. In every project we have to create a server 
+steps to create server are :-
+7.1 - open hyper
+7.2 - cd/user/priya/onedrive/desktop
+7.3 - Create mkdir file.js 
+7.4 - initlize npm  - npm init and then a json file will be created
+7.5 - start file.js and it will be open in vscode
+7.6 - Every single time we npm install any package an new dependency added to our npm init json package
+
+8. 3000 is like a channel at white it listen -> look it as a domain, route
+
+ example when we search google.com in s-bar this request send to google servers and the data we want comes from there db and
+  it is in form of HTML , CSS , JS
+
+ In this we have written app.listen at 3000 port adress but nothing comes to us so 
+ for this 
+ lets understand that 
+ local host 3000/ is like a domain name 
+ when we call www.google.com this request send to google servers ad they see this request then they send responce of it in form of 
+ HTML, CSS, JS and we see google home page 
+ note / means root page -> aka home page 
+
+ so for the same to be shown in our website we use 
+
+ app.get('/',function(request,responce){
+ responce.send(<h1>Hello Duniya!</h1>);
+ });
+
+ and now we will get responce on our local host 3000/ --> root pageXOffset, home page 
+
+ 9.  *we downloded nodemon in npm so whenwver we save your server we dont have to go to hyper and start our server.js aganin insteed it started automaticlly 
+
+
+10. Now how we can include our HTML and make our full flech web application
+1. so make a dir anywhere and npm init it 
+2. nom install express in it
+3. now create an html file in it let say form having action ="/route_you_want" method="Post" so you can do post request
+Note -> Inside form -> input use name
+4. inside server.js
+require express and body-Parser(npm install it)
+ then create const app of express
+ now use bodyParser so we can parse HTML data and use it
+ app.use(bodyParser.urlencoded({extended:true})); // *whenever we want to parse data comes from html form we use  urlencoded
+
+ then start port at 3000 by app.listen(3000,function{
+     console.log("post at 3000)
+ })
+
+
+ now use app.get to get html dir
+
+app.get('/',function(req,res){
+res.sendFile(__dirname +"/index.html"); // this will give us the full dir of our html file
+});
+
+then post request
+
+  
+    app.post('/bmiCalculator',function(req,res){
+    var weight = parseFloat(req.body.w1);
+    var height = parseFloat(req.body.h1);
+    var results = weight/Math.sqrt(height);
+    
+    res.send("Your BMI Is: "+results);
+    });
+    
+    
+
+
+
+          
+
+
+
+
+
+          <!-- // using bodyparser using express 
+*whenever we want to parse data comes from html form we use  urlencoded
+<!-- // *so in express.js apiReferance in responce section we see that we have sendFile method insteed of send  -->
+<!-- //  so we can include index.html in our server but this limit in our system only , in practical we didnt know -->
+<!-- // the location of our server so we use __dirname so the entire path of our server comes  -->
+<!-- // *--> priya/onedrive/desktop/calculator -->
+<!-- // and in second para we specify html file.  -->
+
+<!-- // when we enter data in our form and submite  -->
+<!-- // 404 not found  -->
+<!-- // so open inspect -> network-> and click on index.html we see form data and 400 error  -->
+<!-- // *to fix it we will use post request method  -->
+//* whatever value we want we type in req.body.num1(is the name we wrote in input) or req.body.num2 then we will get num2 in console
+
+<!-- // * So with the help of body parser we are able to parse HTTP request , and by urlencoder we get the data we enterend in the html form -->
+<!-- // *so now its simple with help of it  --> -->
+
+
+
+Now to make our website dynamically available not on port 3000 only but host on different servers then we use heroku
+make your 3000 to (Process.env.PORT) for same purpose
+
+now go to hyper and check your ht,node, npm versions 
+now go to your app.js wala folder and touch Procfile- web: node file.js
+now uplode it to git 
+hyper -> folder(newsletter) -> initlize git (git init)
+then -> git add .
+then -> git commit -m"First Commit"

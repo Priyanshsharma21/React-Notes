@@ -1,0 +1,67 @@
+Function provide by react library to perform side effect in functional based component,
+without having to convert the component to a class.
+
+import { useEffect } from 'react';
+
+function Example() {
+  !Declare a state variable
+  const [count, setCount] = useState(0);
+
+  !Declare an effect that updates the document title
+  useEffect(() => {
+    document.title = `You clicked ${count} times`;
+  });
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+
+
+1. useEffect takes a callback function which is responsible for side effect.
+2. second args is dependency array
+
+
+
+1. When you keep No dependency array then effect will be prformed on every render means every state change or update in the app.
+
+useEffect(() => {
+    document.title = `You clicked ${count} times`;
+});
+
+
+
+2. Empty dependency array -> Only at componentdidmount, only at time when we first load the app.
+
+useEffect(() => {
+    document.title = `You clicked ${count} times`;
+},[]);
+
+
+3. Dependency -> if we pass any dependency the it will perform the effect on change of that dependency only
+
+useEffect(() => {
+    document.title = `You clicked ${count} times`;
+},[count]);
+
+ex ->on count change change the title otherwise not
+
+Use useEffect with caution like in API request always cleanup using return statement otherwise some extra side effects will happen
+
+
+function Example(props) {
+    const [loading, setloading] = useState(true)
+
+    useEffect(() => {
+        fetchAPI.then(() => {
+            setloading(false)
+        })
+    }, [])
+
+    return <div>{loading ? <p>loading...</p> : <p>Fetched!!</p>}</div>
+}

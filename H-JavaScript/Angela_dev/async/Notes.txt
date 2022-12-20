@@ -1,0 +1,29 @@
+*Async task ->
+
+Javascript is single threaded and syncronuses language but with browser's API and some mechanism it have async behaviour
+
+JS have callStack which manage the machenism and flow of code(tasks) one by one but when a async task comes it pop's out that API and given to browser API & then browser will take care of it
+
+So, 
+Every task first goes to call stack then it check weather it is a async or sync,
+if it takes some time means it is async in nature and pop's out to the web API Stack
+and browser handle it
+
+*Event loop ->
+Once it is finish in bg it returns back to call stack and been execute
+This mechanism handle by event loop
+
+Event loop push task according to priority inside the event loop
+
+*Callback and micro Queue ->
+What if two async task complete at same time and came back to call Stack which will come first this is a concept 
+
+JavaScript has a mechanism for this and it separated the callback quests into two parts the Micro Tasks and the Macro ones.
+
+macrotash queue contain normal callback functions like setTimeout and interval
+Macro task has less priority then misco task
+
+Microtask queee-> It contain the promises
+
+
+

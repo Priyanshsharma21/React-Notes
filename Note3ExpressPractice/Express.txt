@@ -1,0 +1,66 @@
+Express is web app framework which provide us with large set of features to crete our web node server
+
+This help us to create different routes and controllers which will interact with mongo frontend react.
+
+Express gnerally contain (get,post,put,patch,delete) http methods and we get a status code back
+
+
+app.set('view engine', 'ejs')
+
+when we write 
+res.render("list", {key:value}); // it will look to list.ejs 
+
+
+when our project grow its good to have a routes and controllers folder where we have same file name with singular form
+
+So inside the routes folder we can use 
+
+
+const routes = express.Routes()
+
+routes.get('/', userController)
+
+export default routes
+
+Inside the main.js we have to import it with name like userRoute and then
+
+app.use('/users',userRoute)
+it means everything with /users put route aftet this
+
+Its a good practice to put your dynamic routes below
+
+    If we have similar route like /:id and have we are using different methods on it then we can chain it like this
+
+    router.route('/:userId')
+.get(newUserIdController)
+.put()
+.delete()
+
+Middleware must be normal function
+Middleware is a stuff that runs in b/w req and res from server
+It have req,res,next property in it
+it runs before any route and It will execute all the functionality it have
+after thagt we have to call next()
+Such that further actions can be performed
+Middleware must be at top
+if we want a middleware to run on a pertcular route only then
+we can have multiple middleware
+
+app.get('/login',logger, (req, res) => {
+ res.send("Login karlo friends")
+})
+
+
+If we want all of the routes use it then 
+At top
+app.use(logger)
+
+
+function logger(req,res,next){
+    console.log(req.originalUrl)
+    next()
+}
+
+
+
+app.use(bodyParser.urlencoded({extended: true})); // this allow us to set information comming from form

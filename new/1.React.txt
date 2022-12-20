@@ -1,0 +1,74 @@
+1. React is open sourse js library used to make single page application(which dont have to load multiple times on activity)
+it is the view layer of MVC
+DOM is a way to represent the webpage in a structured hierarchical way Jordan Walke 2011 news feed and then instagram and whatsapp
+vanilaJs -> imperative approch you have to do everything to achive result
+ReactJS -> You define the result all the things handle by react using component
+React take care of all in BTS
+
+1.1 Huge community over 100k sars github
+
+Features-> 
+1. Virtual dom
+2. Unidirectional flow
+3. components to make UI
+
+
+2. Use to make beautiful UI 
+
+3. Complex structure break into components and this can be reuse so it make it more clean
+3.1 Single page app means only lode once and then only page change not whole website lodes
+3,2 React is view layer of MVC(model view controller)((software design pattern commonly used for developing user interfaces that divide the related program logic into three interconnected elements.))
+3.3 Update only right componet
+
+uses diffing algorithm to identify the changes in UI and that part only refect on virtual dom and hence on browser DOM (will not get rerender)
+
+4. Everytime we write code in react it create a virtual dom and compare it with older version of dom and then only update the change version not whoile code
+bable compile jsx
+4.2 Briwser don take more memory
+Virtual dom -> All changes made in virtual dom in react, whenever change in state react compare virtual dom with browser dom and react accordingly
+
+npx -> node package execute
+
+React components are pure functions thats why we cant cha
+!Note -> Libearary is a tool using which we can do any work easily and short
+
+
+
+
+5. In normal website when wclient req for a website server res with html css js and for every page new html css js cpmesd like for home page different, for contact page different
+
+6. In single page application only once html css js comes and js will control all the req
+
+7. React combine html css and js together to create.
+
+
+
+
+!7. Setup is -> 
+!npx create-react-app my-app // npx is npm package runner comes with node
+!cd my-app
+!npm start
+
+
+8.
+
+import React from "react";
+import ReactDOM from "react-dom";
+
+const randomImg = "https://picsum.photos/200";
+
+ReactDOM.render(
+
+  <div>
+    <h1 className="heading">My food</h1>
+    <div>
+
+      <img src= {randomImg + "?grayscale"} />
+
+    
+    </div>
+
+  </div>
+
+,document.getElementById("root")
+)

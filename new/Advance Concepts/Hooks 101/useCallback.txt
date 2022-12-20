@@ -1,0 +1,33 @@
+The useCallback hook is a function provided by the react library that allows functional components to memoize a callback function.
+
+It is a way to optimize the performance of a component by avoiding unnecessary re-creations of the callback function.
+
+Not recommended to use in access otherwide some unnecessary side effects
+
+import { useCallback } from 'react';
+
+function Example({ data }) {
+  const [count, setCount] = useState(0);
+
+  const handleClick = useCallback(() => {
+    setCount(count + 1);
+  }, [count]);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={handleClick}>
+        Click me
+      </button>
+      <ul>
+        {data.map(item => (
+          <li key={item.id}>{item.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+
+Whenever the count change the callback inside the useCallback will run and update the depencency,
+if dependency not changed then it will not run and directly return value, this will optimoze the performance

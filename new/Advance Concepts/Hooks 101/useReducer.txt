@@ -1,0 +1,49 @@
+Function provide by react library to manage state updates
+
+Reducer is a function take two args : 
+1. current state and action and return new state based on action
+
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return { count: state.count + 1 };
+    case 'decrement':
+      return { count: state.count - 1 };
+    default:
+      throw new Error();
+  }
+}
+
+
+
+Now we can use useReducer hook in functional based component to manage state : 
+
+
+const [state, dispatch] = useReducer(reducer, { count: 0 });
+
+useReducer takes reducer function and initial state
+and returns an array with two elements: the current state value, and a dispatch function for dispatching actions to the reducer.
+
+To dispatch an action to the reducer, we call the dispatch function with an action object as an argument. The
+
+
+
+import { useReducer } from 'react';
+
+function Counter() {
+
+  const [state, dispatch] = useReducer(reducer, { count: 0 });
+
+  return (
+    <div>
+      <p>Count: {state.count}</p>
+      <button onClick={() => dispatch({ type: 'increment' })}>
+        Increment
+      </button>
+      <button onClick={() => dispatch({ type: 'decrement' })}>
+        Decrement
+      </button>
+    </div>
+  );
+}

@@ -1,0 +1,9 @@
+Mongo 
+Express
+React
+Node 
+
+Mongo is document database align with js
+Express use with express it is web framework
+React client side js library
+Node is premier js web server (runtime enviroment) platform to use js in server

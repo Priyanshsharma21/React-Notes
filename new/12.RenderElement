@@ -1,0 +1,7 @@
+We use reactDom which takes 2 args one HTML code and other HTML element 
+We render our whole react inside the div with root id 
+
+<div id="root"></div>
+
+reactDom.render(<h1>Hello</h1>,document.getElementById('root'))
+Note -> jsx allow us to write html inside the js

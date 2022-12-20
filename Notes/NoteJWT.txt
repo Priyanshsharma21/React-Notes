@@ -1,0 +1,52 @@
+For creating a user we take username and password
+In previous apps we create a cookie and store it in browser and when user enter the website they dont have to login again
+
+Now we use token auth
+this is a long string we put inside the browser with the help of this we can authorize user
+
+JWT -> json web token is as open source std which provide us a way to transmitt our json data more securly
+we can create a token with algo like HMAC or a public/private key pair using RSA or ECDSA.
+
+It is use for authorization(after login which routes to show) and information exchange from one party to other
+we will use cookie for this
+
+We can create token using jwt
+To store it in browser we use cookieParser
+to authenticate we use express jwt
+
+
+import jwt from 'jsonwebtoken'
+import expressjwt from 'express-jwt'
+
+
+        // create token
+        const token = jwt.sign({id : user._id}, process.env.JWT_SECRET)
+
+        // put token as cookie
+        res.cookie("token", token, {expire : new Date() + 77777})
+
+        // send res to frontend
+        const {_id, name, email, role} = user;
+        return res.json({token, user : {_id, name, email, role}})
+
+
+Bearer -> it is a piece of something which helps you to grant something using it
+
+Bearer tokens can be included in an HTTP request in different ways, one of them (probably the preferred one) being the Authorization header. But you could also put it into a request parameter, a cookie or the request body. That is mostly between you and the server you are trying to access
+
+
+To signOut we just have to clearCookie("token")
+
+
+Ex->
+In disney+hotstar we can watch cricket match highlights without loggin. So this route is allowed in not loggedin
+When you loggedIn you will get access to some more routes like Kdramas, movie, shows, tv etc -> comes under loggedIn routes
+When you are authenticated(took subscription) and now you are allowed to make changes in your own informations like downloads, liked, recent Watched
+
+Some basic termologies used ->
+1. userNotLoggedIn -> routes we want to show to the user without loggedin to the application
+2. isLogedIn -> Wat routes we want to show to the user when they logged in
+3. isAuthenticated -> The changes user can make in his own account
+
+expressjwt use to check this only that user is loggedin authenticated or not and what routes to show to them
+

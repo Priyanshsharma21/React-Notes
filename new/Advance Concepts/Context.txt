@@ -1,0 +1,69 @@
+It helps us to pass data through component tree easily without passing it manually at every level
+Use only when its complex to pass data otherwise use normal props to pass data from one component to other
+
+First, we'll create a context using the createContext function from the react library:
+
+import { createContext } from 'react';
+
+const CartContext = createContext();
+
+export const CartContextProvider = ({ children }) => {
+ 
+
+  return (
+    <CartContext.Provider
+      value={{
+        showCart,
+        setShowCart,
+        cartItems,
+        totalPrice,
+        totalQuantities,
+        qty,
+        incQty,
+        decQty,
+        onAdd,
+        toggleCartItemQuanitity,
+        onRemove,
+        setCartItems,
+        setTotalPrice,
+        setTotalQuantities 
+      }}
+    >
+      {children}
+    </CartContext.Provider>
+  )
+}
+
+export const useCartContextProvider = () => useContext(CartContext);
+
+
+Wrap your root with the provider such all the component can use it
+ReactDOM.render(
+  <CartContextProvider>
+    <App />
+  </CartContextProvider>,
+  document.getElementById('root')
+);
+
+
+
+
+import { useCartContextProvider } from '../context/CartContextProvider'
+
+const {showCart, setShowCart, totalQuantities} = useStateContext();
+
+const Navbar = () => {
+  
+  return (
+    <div>
+    
+    </div>
+  )
+}
+
+export default Navbar
+
+
+
+
+Here we have children as a peops which is a component

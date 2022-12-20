@@ -1,0 +1,16 @@
+1. React is a declarative, efficient and flexible js library to make complex ui using small combination of components
+which uses reuseable component based architecture and external packages to make UI
+
+2. React uses JSX which is combining html in js
+
+3. We have classbased and function based component which takes parameter props
+
+4. Render method takes dicription of jsx to form a ui
+
+5. <div></div> in jsx is easy and can be written like
+
+    React.createElement(
+    type, // h1
+    [props],
+    [...children]
+    )

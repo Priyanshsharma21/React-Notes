@@ -1,0 +1,8 @@
+The key difference between a Library and a Framework is the "Inversion of Control" (IoC). 
+
+With a Library, you are in charge, which means you can choose where and when you want to insert/use the library, and what aspect of the library you want to include (you plug your library into your code). Like I want some animation then I can use framer motion or gsap 
+
+Meanwhile, with a Framework, the framework is in charge, not you, which means a framework tells you where to put a specific part of your code (you plug your code into a framework) 
+
+
+A framework dictates how we develop our applications, whereas a library is like an API that we can call when you need to.

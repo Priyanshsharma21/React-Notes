@@ -1,0 +1,7 @@
+React -> It have React. createElement, children, Componet which is the building block of the app, it is an universal helper to build an react app
+
+
+
+ReactDom -> it have render method,render createPortal, findDomNode()
+At first react and react dom is one package but later then seprate it
+It make better to share component b/w react and react native

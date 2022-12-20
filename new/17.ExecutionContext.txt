@@ -1,0 +1,92 @@
+Everything in js executed inside execution context
+
+
+Execution is like a big container inside which our js code resides and executed 
+
+
+Memory context is like big box have two components (sections)
+
+1. Memory componnet (variable enviroment) memory execution where value stored in 
+
+* key : value pairs 
+
+
+2. Code component (code execution)(thread of execution) where code execute one at a time 
+
+3. JS is sync single thread language 
+one line at a time executed and in specific order
+
+!Example ->
+
+var n = 2
+
+function square(n){
+    var ans = n * n
+    return ans 
+}
+
+suqare2 = square(n)
+suqare4 = square(4)
+!-----------------------------------------------------
+1. Code runs -> global execution context created 
+2. this context have memory component and code componenrt
+3. Two phases -> Memory creation phase(memory allocation)
+second phases -> code execution phase
+4. -> In memory allocation(creation) phase js scane whole programe memory allocated to all the variable and functions with default values
+
+ex->
+1) n : undefine
+2) square : {...whole function literally....}
+3) square2 : undefined
+4) square4 : undefine
+
+5. In code execution phase code executed 
+1) n : 2
+2) Nothing to execute 
+3) function call -> new execution context created(child(local) execution context)
+function is like mini programe
+whenever the activation called it get pushed in stacka and after completion it get popped out of the context
+This activation has
+return  value,access and control flow,machine status,parameters(actual args) temprories
+
+Now same with this happens
+two phases execution
+!In local execution context memory allocated to varianle
+
+1) num : undefine 
+2) ans : undefine 
+
+! Code execution phase in local execution context
+1)num : 2
+2)ans : 2*2 = 4
+Note when we see return means return resuklt to where function been involjked and pop out of activation record (wraped out,deleted)
+
+!back to global execution contaxt
+3) Square2 : 4 
+
+
+4) square(4) --?> New local execution context created
+1. Allocation phase 
+1)num:undefine
+2) ans : undefine
+
+2. code execution phase 
+1)num : 4
+2)ans:4*4 = 16
+
+see return wraped out and 
+4)square4 = 16
+
+
+programe is fiish then whold global execution context also been deleted
+
+Note -> All the execution this all complex things manage by call stack
+Call stack is a stack in which bottom of the stack is global execution contaxt
+
+1) Js code runs -> global execution ciontext created and pushed in call stack 
+2) when function call new activation record created and pushed in call stact let say (e1)
+when function returned it get popped out and control back to global execution context
+3) similr to all the functions and at last global execution also popped
+
+Node -> It have differnet names like machine,programe,runtime stack 
+It maintain order ot execution and hence it is single threaded and sync language

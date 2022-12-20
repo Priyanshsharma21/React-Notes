@@ -1,0 +1,33 @@
+React have two types of components class and functions
+1. Class 
+
+class Student{
+    constructor(name){
+        this.name = name;
+    }
+
+    isPrasent(){
+        return this.name + "Is present";
+    }
+}
+
+!Inheritance using extends keyword
+!super keyword represent immediate partnt class 
+
+class Exams extends Student{
+    constructor(name,result){
+        super(name);
+        this.result = result;
+    }
+
+    isPass(){
+        retuen this.isPrasent + "is" + this.result;
+    }
+}
+
+
+
+
+
+let s1 = new Student("Priyansh Sharma")
+s1.present()

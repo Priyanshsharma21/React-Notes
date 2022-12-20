@@ -1,0 +1,494 @@
+In our website as user comes they started generation data 
+
+To keep all data safe and be able to uniquely identify the user we use authintication
+username and password of every individual define there identity
+
+Also one resone is when you have some part of your website you allow only when user pay subscribtion then you need authintication
+
+There are 6 layers or level of security we will follow
+
+What we will make -> Whisper App(allows you to share your secreats)(Or thoughts)
+
+our architucture will be 
+
+1. Home to login page || Home to register page 
+2. Login or register page to wisper app
+
+
+commit 98ce8958d78eadfeb37cc7fb95c41cadf86fbd4f
+TODO    Level 6 - Google OAuth 2.0 Authentication
+ 
+commit 4e8349702f16a5570f9ff9b80f7a3740ddd8b108
+TODO    Level 5 - Cookies and Sessions
+ 
+commit d3b3b3a908fc01e72b99616db45e2c28f8975369
+!Level 4 - Hashing and Salting with bcrypt
+ 
+commit 17696f8cfe68c8f91082a98e9750d45e9e176bc3
+!Level 3 - Hashing with md5
+ 
+commit 92a07aa559eb29e5c9c0f50304e7b5e0674a25d1
+Add Environment Vars
+ 
+commit 1702e1d3f75bfbeb0e43848c8bd921863ea21147
+?Level 2 - Encryption
+ 
+commit 7078af837299a4ff50121d67afe17d9fa522ec68
+?Level 1 - Username and Password Only
+
+
+
+1. Level 1 security 
+Take username and password of the users and let them register 
+Create a database user 
+
+
+code below
+ ?----------------------------level-1--------------------------------------
+ 
+app.get('/',function(req,res){
+    res.render("home");
+})
+
+app.get('/login',function(req,res){
+    res.render("login");
+})
+
+app.get('/register',function(req,res){
+    res.render("register");
+})
+
+
+app.post('/register',function(req,res){
+    const newUser = new User({
+        email : req.body.username,
+        password : req.body.password
+    });
+
+    newUser.save(function(err){
+        if(err){
+            console.log(err);
+        }else{
+            res.render("secrets")
+        }
+    })
+})
+
+
+app.post("/login", function(req,res){
+    const username = req.body.username;
+    const password = req.body.password;
+
+    User.findOne({email : username},function(err,foundUser){
+        if(err){
+            console.log("Invailed UserName");
+        }else{
+            if(foundUser){
+                if(foundUser.password === password){
+                    res.render("secrets");
+                }
+            }
+        }
+    })
+})
+----------------------------level 1 ends----------------------------------------------
+
+
+?--------------------level 2 Begin -------------------------------------------
+
+Level2 -> Enctepted password
+This passwords are the password that are created by changing the ordering (Scramble the message) or the main password 
+ex -> Priyash223344 becomes --> 2p3rn4i2sh like this 
+
+We need a key to unscramble the message
+
+
+1. To encrept we will use Mongoose-encrept npm package
+
+
+code ->------------level2->encrypted--------------------------
+
+const userSchame = new mongoose.Schema({
+    email : String,
+    password : String
+});
+
+const secret = "Thisismysecretfile.";
+userSchame.plugin(encrypt,{secret : secret, encryptedFields : ["password"]}); 
+
+!Plugin used to add more functionality
+When we use User.save() -> Encrypted enable and when we use user.find() password will dycrypted
+
+const User = mongoose.model("User",userSchame);
+
+
+------------------------------------Environment variables--------------------------------------------
+We are putting some sencitive information on platforms like github and all that can be seen by all the peoples 
+This can't be safe 
+So with the help of enviroment veriable we can keep sencitive info like api keys safe from others
+
+We use dotenv npm package for it
+1. Create a .env file in root dir(where app.js is)
+2. Write the variable you want to encrypt 
+ex -> API_KEY=swdewvcrewvwevw. // In Capital letter and no space no cotation marks
+2.1 dotenv.config()
+3. Inside the app.js now we can access it by (process.env.API_KEY)
+
+Thats why the first thing that we should do before any project it to setup gitignore and a .env file 
+So even ion github noone can see it 
+
+
+--Till now we have done ---------------->
+
+password + key ---ciper Method-----> cipertext
+Is you have a kry then you can decrypt the password very easily then we need a strong method 
+
+
+!-----------------------level-3---------Hashing------------------------------------------------>
+
+*Story-> In early time people use encryption message letters in which every word has its corrospond meaning which is very week way of encryption
+
+In hashing we use hash function 
+
+password-----hash function----->Hash 
+we use hash function to convert password into hash and this hash store inside the database
+
+Converting a pssword into a hash is easy but coming bckword is time consuming
+ex -> If password to hash is in 2 ms then hash to password took 2 years
+
+Approch -> 1. User register with a password -> We convert it to hash then when user login user enter password this password convert to hash and we will compare both the hash if mastch then welcome otherwise noz
+
+npm ----> md5 
+
+
+
+-----------------------------codes------------------------------------
+const md5 = require('md5');
+
+app.post('/register',function(req,res){
+    const newUser = new User({
+        email : req.body.username,
+!        password : md5(req.body.password)
+    });
+
+    newUser.save(function(err){
+        if(err){
+            console.log(err);
+        }else{
+            res.render("secrets")
+        }
+    })
+})
+
+
+app.post("/login", function(req,res){
+    const username = req.body.username;
+!    const password = md5(req.body.password);
+
+    User.findOne({email : username},function(err,foundUser){
+        if(err){
+            console.log("Invailed UserName");
+        }else{
+            if(foundUser){
+                if(foundUser.password === password){
+                    res.render("secrets");
+                }
+            }
+        }
+    })
+})
+--------------------------------------------------------------------------------
+
+-------------------------------Hacking-------------------------------------
+
+We have listen a lot that whats app or linkedin, facebook account password get hacked 
+So is it that the companies dont know to secure there password 
+
+ex->
+
+I am a hacker and i creck linkedin database 
+
+username - radhi
+password - 3n4n3nn3n2bn2
+
+username - jay
+password - j1j2y3sh434
+
+
+username - uday
+password - j1j2y3sh434
+
+Now uday and jay has same hash because same text convert to same hash 
+
+So hacker will start to create hash table
+
+use most common used password and create a hash table and try all the patterns and see if the pattern matches the pssword is found 
+
+How to make a hash table 
+
+1. Use all the words in dictonary (150k) words
+2. Combine all the numbers from telephone book(5M)
+3. All combination of words upto 6 digits (19B)
+All combination sum = 19.8B
+
+In market there are powerful graphic cards(GPU's) use for bitcoin mining
+also use for hashing
+This cards are capable of hash 20B Hashes per second -> So with this card it take only 0.9s for a hacker to hack your password (nothing right)
+
+In todays world it is very easy to find most common used passwords 
+
+But if you have a strong password 
+Combination of characters + numbers + symboles + long enough 
+then this will increase the computation time by exponential
+
+Ex- If you have password -> Piyu123 (it will take 12 min and less than 10s for fast gpu to creak it)
+                password -> Piyu@123 (It will take 2 months or 5hr by very fast gpu to hack it)
+                password -> Piyuindia4@191147 (You wont belive but it takes 13 quintrilion years or 13 trillion years to be hacked by fasted\st gpu in the world )
+
+
+
+--------------------------Salting---------level-4------------------------------------------------------------------------
+
+
+As we know now that increase the number of char increase the complaxity of hacking the password 
+
+In salting we combine our password with set of integer and create a hash which will takes trillions of years to decode
+
+This hash generated is not same as normal hash Salt store in database when we type password it combines with salt and matches the previous hash if match you are welcome
+
+Latest gpu can only generate 17000 bcrypt hashes/second
+
+Now if we pass a password ---> Password + 232344 --hash function----> Hash ---> Hash + 234343----->Hash (more powerful)
+So this is what hash round is at every round our password become more secure
+
+Every year computer proice going down and features (chips) increase
+On every round the time increase but due to increase the technology it nutrals
+
+
+Username --> salt (password+3245433) -----> Hash (i.e 10 rounds)
+
+when we login it perform salting 10 times and match password if mastch welcome
+
+!curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+
+use this to downlode the nvm used to updrage the node versions 
+
+We need bcrypt npm module to perform the Salting
+
+npm i bcrypt@3.0.2 and it install // this is use to install particular version
+
+
+code -----------------------------
+const bcrypt = require('bcrypt')
+const saltRound = 10; // more the round more the time 
+
+
+
+app.post('/register',function(req,res){
+
+
+    bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+        const newUser = new User({
+            email : req.body.username,
+            password : hash
+        });
+    
+        newUser.save(function(err){
+            if(err){
+                console.log(err);
+            }else{
+                res.render("secrets")
+            }
+        })
+    });
+
+
+
+
+    
+})
+
+
+app.post("/login", function(req,res){
+    const username = req.body.username;
+    const password = (req.body.password);
+
+    User.findOne({email : username},function(err,foundUser){
+        if(err){
+            console.log("Invailed UserName");
+        }else{
+            if(foundUser){
+                bcrypt.compare(password, foundUser.password, function(err, result) {
+                    if(result===true){
+                    res.render("secrets");
+                    }
+                });
+                
+            }
+        }
+    })
+})
+
+And now our password is just next to impossible to be hacked 
+
+
+
+
+
+-----------------Cookies & Sessions-------level-5----------------------->
+
+
+Scanario -> We went to amazon.in and there we add to cart some items
+Now we distract and logout
+As soon as we logout amazon generate cookie of that item into your browser
+Now when you cane back you se the item inside the basket but how you come out 
+This is how cookie work
+1. It save all of your previous browser sessions now when you go to facebook you saw the same item you added to cart
+Now amazon keep remind you to buy that item, due to cookie
+
+
+Working ->
+
+1. We type www.amazom.in --get request---> Http request send to amazon servers
+2. Amazon servers send Html css js responce
+3. Then we add a mobile Phone to cart (a post request) to amazon server
+4. Amazon send responce-> item added + item cookie to our browser to save that responce in our browser.
+5. Next time we came to amazon.in we send get request to amazon server with that cookie 
+so amazon will identify us and show our cart items in responce(HTML,CSS,JS).
+
+There are lot if cookie but we will lokok at once which is used to maintain sessions
+
+Session---> Period of time our browser intrect with the server
+1. When we login our session start and cookie created says this user is authinticated
+2. So next time you come it will not say you to login 
+3. When you logout session ends and hence cookie destroyed
+
+
+
+
+
+
+------------------------------ Passport.js ---------------------------------------------
+npm i passport passport-local passport-local-mongoose express-session
+
+1. require all the packages  
+
+ const session = require('express-session');
+const passport = require('passport');
+const passportLocalMongoose = require('passport-local-mongoose');
+
+2. app.use method
+
+  app.use(session({
+    secret: 'Nacho balle balle.',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        secure: true
+    }
+}))
+
+!Initlize the passport and its session
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+3. Add plugin mongoose
+ userSchame.plugin(passportLocalMongoose);
+
+4.
+! use static authenticate method of model in LocalStrategy
+passport.use(new LocalStrategy(User.authenticate()));
+
+! use static serialize and deserialize of model for passport session support
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
+
+
+
+
+
+
+
+
+
+----------------------------level-6------------------------------------------oAuth------------------------------------
+IOAuth is std for open source for token based authorization
+
+Ex-> We are making a social media website 
+at time of register we can give them option to sign-in mainullly(then will not get benifit of oath)
+or Sign in with facebook or google in this case all the friends that are common in both (in facebok or google ) and our website
+will be roccomded
+
+
+Working -> When user click sign in with facebook 
+We send a get req to (http) fb server 
+fb server will a responce as a  table of user
+Now we will compare this users with our user table and if match then friends added
+
+
+
+Why this --->
+We can make our website secure up to a level (encrypt,hash,salt) but to make it more 
+It takes hours of time so what we can do is to give this job to google of facebook
+they will manage those authinticated if the user is authorized google of facebook ouse then 
+we will allow them
+
+
+
+Why oath ---->
+Grantual access level
+with oath we can get specific peace of information from facebook or google about there user
+like there friennd list, there profile
+
+Read/read+write access
+We can ask for it 
+
+revolk
+user can deauthorize your website from facebook also
+
+
+Working of oauth-------->
+
+1. Setup ---> In there devloper console and in return we will get appid and we get client id
+
+2. Ask user to sign in with facebook 
+
+3. User see fb interface nd user login on facebook
+
+4. Fb ask then to give permissions(profile etc).
+
+5. We resive an oauth code from fb which means user is authenticate
+
+6. We will request for access token to fb it is like year pass 
+and auth code is like one time ticket
+
+7. Once fb give permission to this , we can now get information of user on this website
+
+
+setup ----------->
+
+1. npm install passport-google-oauth20
+
+2. go to google clouds -> new project-->name it, create it---> cridintials
+3. Auth concent screen create it go to cridential and add cridentiol -> oauth2.0
+4. Web app and then add your localhost:3000 ,, Localhost:3000/suth/google/secrets
+5. get app id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

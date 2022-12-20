@@ -1,0 +1,50 @@
+If we are working on a project where we have to pass data from one compouent to other which we have to do in react now if its a small project then ok but in big projects where we have to pass data from lot of component even that component dont need that data we have to pass it hence we need something where we store those state and whoever need it we they can use it
+
+Redux is external library for state management where we have redux store from where we store those state and whoever need it we they can use it
+
+It makes global object so any compoent can use it, makes easy development and testing and consistancy easyness
+
+concept is simple -> Any react component can read data from redux store, they can dispatch actions to store or update in order to change data, it chack if any change happens to data that component requesting nd re-render data
+
+
+concept lifecycle ->
+UI triggers Actions
+Action send to reducer
+Reducer update store
+store contain state
+state define UI
+Repeat
+
+
+Terms used - >
+1. Action - Plane object tells intention to cause change, change in UI (means user have perform some actions) this triggers action(an object contain all the information tht what state has change and time of occerance, coordinates)
+
+2. Action are send first to reducer dada - Reducer(pure function) dada only want payload(pure data)
+Reducer dada ask action - tu bas yea bata ki data konsa change hua hai wao kya haina mako yea store mausi ko batana hai also I will update new state from previous 
+
+
+Installation -  npm install redux react-redux
+File and folder - 
+components(navbar, sidebar),
+container(home,crypto,news),
+actions
+
+
+
+Anology - > 
+
+Baby(6 years) as UI
+Mom Dad(busy working professionals and action creator)(MD) as Actions
+Shankar maharaj(care taker) as Reducer
+
+Scanario ->
+Baby(UI) wants Bat and Ball
+
+He ask Mom and Dad(Actions) for it
+
+MD dispatch whatsapp message to shakar maharaj whose 
+Type : 'BRING'
+Payload : 1 Ball + bat
+
+Now shankar is the one who actually do work of bringing the bat and ball
+

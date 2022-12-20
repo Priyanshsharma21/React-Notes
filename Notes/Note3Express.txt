@@ -1,0 +1,18 @@
+It provides us the capablity of routing, controllers and we can listen on any port using express and make our frontend to intract with it
+
+
+We have different type of request such as a GET request
+Get -> To get data from the server
+Post -> To post data to the server
+Put and Patch -> To Update data (put -> replace whole data, patch -> replace only updated part)
+Delete -> to delete data
+
+Note-> we use curly braces to return and simple paranthesis when not returning in callback
+
+app.get('/', (req, res) => {
+    res.send("hello duniya")
+})
+
+app.listen(PORT,()=>(
+    console.log(`Listening at port ${PORT}`)
+))

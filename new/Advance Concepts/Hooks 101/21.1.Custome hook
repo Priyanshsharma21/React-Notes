@@ -1,0 +1,36 @@
+What is custome hook
+we can create our own hook that can perform some logic can hook into state of components function al components
+
+Ex ->
+
+We want to fetch data from any endpoint number of times when creating the project we can simplify this task with costome hook like this ->
+
+
+In a hook folder name the hook whatever you want inside that file create a async function contain our fetching login like this
+
+
+export const useFetch = (url)=>{
+    *three things needed for any fetch api
+    const [data, setData] = useState(null);
+    const [loading, setloading] = useState(false);
+    const [error, setError] = useState(false);
+
+    useEffect(()=>{
+            setloading(true);
+            try {
+                const res = await fetch(url);
+                const resdata = await res.json();
+                setData(resdata);
+            } catch (error) {
+                setError(error);
+            } finally {
+                setloading(false);
+            }
+    },[])
+
+    return [data,loading,error]
+}
+
+in any component we can just pass url and get data, loading, error back
+
+const [data, isLoading, isError] = useFetch('https://www.googleapis.com/movies')

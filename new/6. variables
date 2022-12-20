@@ -1,0 +1,16 @@
+var let const 
+
+1. Var - use from beginning of js
+It is global scope
+It is local inside function (funtrion scope)
+Inside blocks like for-while-if-else it is still global 
+and can change value of global inside it 
+It is hosted means can be use before declwar
+It can be redeclear
+
+2. Let and const 
+Added after 2016
+Let and const are block scoped means exist inside block 
+outside block it dont exist 
+Hosted on top but cant use before declear
+both cant be redeclewared and const cant be rewrite

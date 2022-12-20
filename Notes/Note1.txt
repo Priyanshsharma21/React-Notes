@@ -1,0 +1,50 @@
+Backend is the piece of code that is keep running behind all the time and doing what we have told it to do
+User interact with our frontend and whatever information user enter on frontend goes to our backend where according to our logic like what to do with this data, is the data enter correct and that status code like 200,300,400,500 to show to the user
+
+Status code are :
+200 -> ok
+401 -> unauthorized
+404 -> Not found
+500-> internal server error
+
+
+_> When working on big projects we have to think how our end result gonna look like and we have to think alot before writing the code
+
+toggle mind mapping website is best for this purpose
+
+
+MERN stack is the most powerful js stack to build web applications
+It help us to carry 3 tire architecture (frontend, backend and database )
+entirely using javascript
+
+
+M -> Mongodb as no-sql database in which data store in json format
+
+ex-> 
+
+Books = {
+    name : "Harry potter",
+    author : "JK Rowling"
+    Price : 1000 ,
+    Parts : 8
+}
+
+
+E -> Expressjs web application framework, it facilitate us with robust set of features to make our node application
+Its easy to build projects in javascript using 
+
+Express is used to listen to a particular port of our 
+server for requests from the client or the frontend. 
+
+We can create different routes for each endpoint.
+
+In MERN express serve as backend API server which interact with mongodb and serve data to frontend react
+
+R -> React which is javascript library to build frontend of our application using component based architecture, use to handle view layer of our application
+
+All the big tech companies use react as there frontend and it is use because it makes SPA single page application
+
+
+N-> Nodejs is cross platform js runtime environment, build on chrome v8 engine to run js outside of the browser
+
+Purpose is simple, it help us to write backend code in js which helps us to learn one language less and be on js ecosystem to build our app

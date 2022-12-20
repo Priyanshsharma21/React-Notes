@@ -1,0 +1,31 @@
+Code splliting is used to split your code to increase the performance of your app
+Main goal is to render only the needed part not the whole applications
+
+Rendering the component is expensive when you open the source in developer tool you will see all the code been loaded
+
+ex we have hom, about, contact page when we reresh the whole file been downloaded, we only need the part which user can watching
+
+
+1. we can use dynamic import -> like inline import
+so when te user click on the page then the file will be imported and downloaded, this will be a promioce so we wil do is 
+import('../sum).then(module=>{
+    alert(module.sum(2,4))
+})
+
+
+Lazy > it is an another way of doing code spliting in react, we can use it in router
+Ex -> import react,(Lazy,Suspence) from 'react'
+
+const Home = Lazy(()=>import('../component/Home))
+
+return(
+    <Routes>
+        <Route to="/" element={<Home />}
+    </Routes>
+)
+Lazy is a function which have an callback function which return promise
+In above example have Home as lazy compone t which wuill only downlod when we click on it, this save memory and time
+
+When we use Lazy we have to wrap that component inside the Suspence (has fallback -> loke a loader)
+Lazy function support only default export
+

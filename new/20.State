@@ -1,0 +1,13 @@
+Every component have some state 
+This state can change on user action or some events
+This make coponent dynamic and interactive
+!It refer to data or property of app that need to be tracked.
+
+
+Whenever we want to reflect the changes on component
+Like we click in button and some changes happen then we use state
+
+Component have data
+To update that data on user interaction we use state
+
+State is like real state, it have value and function to change the value

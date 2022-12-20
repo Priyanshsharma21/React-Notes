@@ -1,0 +1,45 @@
+let numbers = [2,3,4,5,6,7,8,9]
+
+!Map - Create a new array by doing something with each item in an array.
+
+*Filter - Create a new array by keeping the items that return true.
+
+!Reduce - Accumulate a value by doing something to each item in an array.
+
+?Find - find the first item that matches from an array.
+
+TODO->FindIndex - find the index of the first item that matches.
+
+1. Map 
+
+let newArray = number.map((value)=>{
+    return value*2
+})
+
+or 
+
+number.map(value=>value*2)
+
+2. Filter 
+
+let newArray = number.filter((value)=>{
+    return value<5
+})
+
+3. Reduce 
+
+numbers.redude((sum,value)=>{
+    return sum+value;
+})
+
+4. Find 
+
+numbers.find((value)=>{
+    return value<10
+})
+
+5. findIndex 
+
+numbers.findIndex((value)=>{
+    return value<10
+})

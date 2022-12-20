@@ -1,0 +1,33 @@
+The useMemo hook is a function provided by the react library that allows functional components to memoize a value. It is a way to optimize the performance of a component by avoiding unnecessary re-computations of a value.
+
+
+import { useMemo } from 'react';
+
+function Example({ data }) {
+  const [count, setCount] = useState(0);
+
+  const filteredData = useMemo(() => {
+    return data.filter(item => item.count > count);
+  }, [data, count]);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+      <ul>
+        {filteredData.map(item => (
+          <li key={item.id}>{item.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+
+Here we are getting data from other component now we are calculating the filter value.
+
+1. useMemo takes a callback function which is a memoized function, memoized function will execute and calculate the value.
+
+2. Second args in dependency array, now whenever one of the dependency changes then memoized function will be executed and new value for dependency will be calculated, if all the dependency is same as previous then memoized function will not be executed and value directly returned and tis save time and memory

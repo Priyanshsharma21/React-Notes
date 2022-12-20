@@ -1,0 +1,14 @@
+Function provide bu react lib to create mutable reference of dom element in functional based component, it is used to manipulate dom.
+
+we can create ref by -> 
+
+const inputRef = useRef(null) //initial value
+
+<input ref={inputRef} />
+
+
+when we type something we get it in here ->
+useRef hvae only one current property which have all the detail about the dom
+inputRef.current.value
+
+useRef donnt cause rerender but useState do

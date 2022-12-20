@@ -1,0 +1,24 @@
+JSX is used to write HTMl in js
+JS XML = JSX
+It provide syntax sugar to React.createElement()
+We can esily write html in javascript
+Js write {} inside curly braackets
+Bable compile jsx 
+Multi statements not allowed, wrap whold code inside
+without jsx we have to write createelement
+
+
+
+
+return (
+    <div></div>
+    or 
+    <></>
+)
+
+! Basic Rules 
+1. All html code inside one single tag (  <> </> )
+2. Always self close tag 
+3. class = className
+4. Use ternary instead of  if-else condtion
+condition?true:else

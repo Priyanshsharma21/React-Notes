@@ -1,0 +1,39 @@
+Before funcuon based we have class based components In which we have life cycly methods like 
+!ComponentdidMount runs when component been creatd or when screen loades
+!componentDidUpdate which runs on change on some props or some condition
+!ComponentdidUnmount use when just before component get deleted clesan function
+
+This all three replace by single useEffect hook
+
+!1. useEffect(()=>{
+    This will run is single update of code // every render
+})
+
+!2. useEffect(()=>{
+  this will run oonly one time when page loades // componenrtDidMount
+},[])
+
+!3. useEffect(()=>{
+    this will runs whenever the user image changes or any props or state changes // componentDiudUpdate + componentDidMount
+},[user.image])
+
+
+this is use to improve the performace of our app, when size change this will run and at same time after that it will unmount it
+
+!4. useEffect(()=>{
+this will run on page loads
+    window.addEventListnet("resize", updateWindowScreen)
+
+this is a cleanup function
+    return()=>{
+         window.removeEventListnet("resize", updateWindowScreen)   
+    }
+})
+
+this can be replace by 
+
+!4. useEffect(()=>{
+this will run on page loads
+    window.addEventListnet("resize", updateWindowScreen)
+// this will runs only once and then not
+},[])

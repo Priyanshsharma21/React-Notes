@@ -1,0 +1,91 @@
+To rander list we use map 
+!Example ->
+
+function items(){
+    cosnt team = ['virat','rohit','rahul','hardik']
+    const liItem = team.map((player)=>{<li>{player}</li>})
+    function listItems(){
+        return (<ul>{liItem}</ul>)
+    }
+}
+
+
+!Example 2
+
+! NameList.jsx 
+
+import React from 'react';   
+import ReactDOM from 'react-dom';   
+  
+function NameList(props) {  
+  const myLists = props.myLists;  
+  const listItems = myLists.map((myList) =>  
+    <li>{myList}</li>  
+  );  
+  return (  
+    <div>  
+        <h2>Rendering Lists inside component</h2>  
+              <ul>{listItems}</ul>  
+    </div>  
+  );  
+}  
+
+
+! App.jsx
+import NameList from './NameList'
+
+const myLists = ['Peter', 'Sachin', 'Kevin', 'Dhoni', 'Alisa'];   
+ReactDOM.render(  
+  <NameList myLists={myLists} />,  
+  document.getElementById('app')  
+);  
+export default App;  
+
+
+
+!Keys -> Used to uniquely identify which item has change update or deleted
+Used in array mostly and used to piint to item like index
+
+
+!1.
+
+function Car(){
+    const cars = ['BMW','FORD','VW','Mercedise']
+
+    const List = cars.map((cars)=>{
+        return <li keys={cars.id}>{cars}</li>
+    })
+}
+
+
+
+
+
+
+
+
+
+
+!2.
+function Car(props) {
+  return <li>I am a { props.brand }</li>;
+}
+
+function Garage() {
+  const cars = [
+    {id: 1, brand: 'Ford'},
+    {id: 2, brand: 'BMW'},
+    {id: 3, brand: 'Audi'}
+  ];
+  return (
+    <>
+      <h1>Who lives in my garage?</h1>
+      <ul>
+        {cars.map((car) => <Car key={car.id} brand={car.brand} />)}
+      </ul>
+    </>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Garage />);

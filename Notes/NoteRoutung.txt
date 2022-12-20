@@ -1,0 +1,58 @@
+Routing refers to how an application’s endpoints (URIs) respond to client requests
+
+We mainly have grt,post,put,patch,delete requests
+On which route we want to perform which operation and send which data back to user is all routing
+
+ex ->
+
+app.get('/top-movies', (req,res)=>{
+    res.json({
+        name : 'Avatar',
+        rating : 8.6,
+        year : 2011
+    })
+})
+
+when user make request on this route they wll get this information
+
+Routing have route nd a handler function (callback)
+
+We can have dynamic routes also
+
+app.get('/top-movies/:movieId', (req,res)=>{
+    const movieId = req.params.movieId
+    res.json({
+        name : 'Avatar',
+        rating : 8.6,
+        year : 2011
+    })
+})
+
+route and controllers mut have same name singular form
+
+
+
+For checking our eequests we use rapidApi
+Create new request and in that
+Get req is simple
+
+For the post request set it to post, 
+In header make -> content.type : application/json
+
+Now you can make post request 
+to get req.body
+you can pass data in body in json format
+
+
+Whatever data we are passing in post request we can get it using req.body.NAME_OF_FIELD
+
+
+
+    const user = new User(req.body)
+    user.save((user,err)=>{
+        if(err){
+            return res.status(400).json({error : "NOT ABLE TO SAVE DATA IN DB"})
+        }
+
+        res.json(user);
+    })

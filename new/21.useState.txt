@@ -1,0 +1,94 @@
+ Use to track state (data or property) of application
+ Hook cant condition
+ hook call at top and only use in funciton
+ 
+ 
+ 1.-> Use state
+
+import react, {useState} form './react' // we dstriucture the useState here 
+
+const [variable, setVariable] = useState(defaultValue)
+!we have current state and function that update that state
+
+
+  DefaultValue can be :-
+    1. String - "" or "Anything you pass"
+    2. Object - {}
+    3. Array - []
+
+
+!1.
+function example(){
+    const [color,setcolor] = useState("red")
+    return (
+        <h1>My fab color is {color}</h1>
+    )
+}
+
+we cant just chage the state like this 
+! color = "red" // not allowed
+Use setColor function for this
+
+Note -> can have multipe useState hooks
+
+
+function FavoriteColor() {
+  const [color, setColor] = useState("red");
+
+  return (
+    <>
+      <h1>My favorite color is {color}!</h1>
+      <button
+        type="button"
+        onClick={() => setColor("blue")}
+      >Blue</button>
+    </>
+  )
+}
+
+
+
+3. Can use object in state 
+
+function Car(){
+    const details = {
+        name : "Mustange"
+        model : "191147"
+        color : "red"
+    }
+
+    const [car,setCar] = useState(details)
+
+    return (
+    <h1>This is my {car.name} and this is of {car.color} and i love this model {car.model}</h1>
+    )
+}
+
+
+If we only what to override the change part we can use spread operator 
+
+funciton car(){
+    const details = {
+        name : "Mustange"
+        model : "191147"
+        color : "red"
+    }
+
+    const [car,setCar] = useState(details)
+
+    function changeColor(){
+        setColor((prevState)=>{
+            return (...prevState, color:"blue")
+        })
+    }
+
+    !this make it compare previous version of dom compare with new version and change only the color rarther than model and all overriden
+
+    return (
+    <h1>This is my {car.name} and this is of {car.color} and i love this model {car.model}</h1>
+    <button onClick={changeColor}>click me to change</button>
+    )
+}
+
+
+When making custome hook it start with use, resone is it is a naming convention and also we know that hooks cant be condition so naming custome hook with useName halp us to distinnguesh

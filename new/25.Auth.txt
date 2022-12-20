@@ -1,0 +1,129 @@
+We store our data on database 
+Client enter there details on website Interface 
+This info send to server and server store it to database
+
+commit 98ce8958d78eadfeb37cc7fb95c41cadf86fbd4f
+TODO    Level 6 - Google OAuth 2.0 Authentication
+ 
+commit 4e8349702f16a5570f9ff9b80f7a3740ddd8b108
+TODO    Level 5 - Cookies and Sessions
+ 
+commit d3b3b3a908fc01e72b99616db45e2c28f8975369
+!Level 4 - Hashing and Salting with bcrypt
+ 
+commit 17696f8cfe68c8f91082a98e9750d45e9e176bc3
+!Level 3 - Hashing with md5
+ 
+commit 92a07aa559eb29e5c9c0f50304e7b5e0674a25d1
+Add Environment Vars
+ 
+commit 1702e1d3f75bfbeb0e43848c8bd921863ea21147
+?Level 2 - Encryption
+ 
+commit 7078af837299a4ff50121d67afe17d9fa522ec68
+?Level 1 - Username and Password Only
+
+
+!1. If data save in plain text
+Attacker searching for less secure database 
+Attacker find your system and enter your database 
+find all data in plain text and get information
+
+
+!2. Using Enctepted password
+Change the order of password so it will be in plain text but scrambled form use in old time 
+
+
+Note - > Enviroment variable
+We use dotenv npm package for it
+1. Create a .env file in root dir(where app.js is)
+2. Write the variable you want to encrypt 
+ex -> API_KEY=swdewvcrewvwevw. // In Capital letter and no space no cotation marks
+3. Inside the app.js now we can access it by (process.env.API_KEY)
+
+
+!3. Using Hash 
+1. Enter password at time of register
+2. This pass through Hash function
+3. Converted to hash 
+4. At time of login enter password this also convert to hash 
+5. Both the hash(stored one during reigster and login hash) compared and if match then welcome to app 
+
+Note -> if going forward takes 2ms (plain text to hash) then coming back(plain text to hash) takes 2 months depend on password strength(min 8 character with uppercase and lowerCase with special characters(@#$%$%$#))
+
+! Hacking
+
+
+I am a hacker and i creck linkedin database 
+
+username - radhi
+password - 3n4n3nn3n2bn2
+
+username - jay
+password - j1j2y3sh434
+
+
+username - uday
+password - j1j2y3sh434
+
+Now uday and jay has same hash because same text convert to same hash 
+
+So hacker will start to create hash table
+
+use most common used password and create a hash table and try all the patterns and see if the pattern matches the pssword is found 
+
+How to make a hash table 
+
+1. Use all the words in dictonary (150k) words
+2. Combine all the numbers from telephone book(5M)
+3. All combination of words upto 6 digits (19B)
+All combination sum = 19.8B
+
+In market there are powerful graphic cards(GPU's) use for bitcoin mining
+also use for hashing
+This cards are capable of hash 20B Hashes per second -> So with this card it take only 0.9s for a hacker to hack your password (nothing right)
+
+
+!Bycrypt (salting)
+
+1. Enter password at register time now this pass through hash function and convert to hash 
+2. Now this hash combine with set of integers and make another hash 
+This rounds will be performed Number of time developer has desided
+
+If 10 salting round be performed then all this process performet 10 times and a hash created which is next to imposible to hack even by most powerful GPU
+
+JWT -> Json web token when user register we gave them token and when they login they show that token and then they are allowed to login
+It provide secure communication b/w client and server 
+
+JWT contain 
+1. Algoused and Token type
+2. Payload 
+3. Signature
+this sign used to check authinticate user
+
+
+
+
+! Using cookie sessions and Passport.js (google,fb auth)
+
+when you register or enter a website they ask for accept cookie 
+when  allow you get session id equivalent to id,pasword 
+this will track your activity on that app 
+
+Working ->
+
+1. We type www.amazom.com --get request---> Http request send to amazon servers
+2. Amazon servers send Html css js responce
+3. Then we add a mobile Phone to cart (a post request) to amazon server
+4. Amazon send responce-> item added + item cookie to our browser to save that responce in our browser.
+5. Next time we came to amazon.in we send get request to amazon server with that cookie 
+so amazon will identify us and show our cart items in responce(HTML,CSS,JS).
+
+There are lot if cookie but we will lokok at once which is used to maintain sessions
+
+Session---> Period of time our browser intrect with the server
+1. When we login our session start and cookie created says this user is authinticated
+2. So next time you come it will not say you to login 
+3. When you logout session ends and hence cookie destroyed
+
+

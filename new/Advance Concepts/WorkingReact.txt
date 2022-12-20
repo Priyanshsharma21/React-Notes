@@ -1,0 +1,12 @@
+We have a server and client
+server can be a cdn (only know how to present files)
+
+Client make requst and server provide client single file on handshake (index.js)
+This index.js have a file called bundel.js
+
+THis bundel.js contain (React runtime, JSX & components, ROuting, Page layout)
+
+Now client execute this js, rendering engine preety much use html cna css parser to parst and make dom & just in time compiler execure js
+
+
+Browser UI -> browser engine -> rendering engine -> networking & js engine & backend UI

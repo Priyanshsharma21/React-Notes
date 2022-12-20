@@ -1,0 +1,21 @@
+our react app consist mainly of state and components
+When we work on big project our components increase and to maintqin state and props it become defucult
+
+Example ->
+We have a ecom website in which we have main 3 componments
+shop, blog, ott 
+
+
+shop has shopping components like cart, product
+blog has different component like card,blogItems 
+ott has different component like movie, series, login
+
+now we want to send one props from movie(login) to shop login we have to traverse all the component and this became defiult
+
+Insteed of creating state and pass from one component to other 
+create a context
+create context 
+and now anyone can use it
+
+we use (useContext) hook
+using it debugging become easy and better management

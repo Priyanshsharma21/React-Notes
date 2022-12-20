@@ -1,0 +1,24 @@
+Hooks -> Hooks are the function which hooks into lifecycle methods of class based component and provide all the features to functional based component in much easy way.
+Hooks completly replace the class based component and now functional based component are used in react which are stateless component (means independent of state)
+
+
+
+
+1. useState hook -> It is a function provide by react library that allow functional based component to have state
+we can manage state of our application using useState without having class and constructor
+
+useState takes initial state as args -> useState(0), useState(''), useState([]), useState({})
+and return array of two elements : 
+1. Value,
+2. Function to change that value,
+
+
+ex -> 
+
+const [count, setCount] = useState(0);
+
+setCount(count + 1)
+
+We should not directly tell setCOunt to update the value otherwise it will not rerender in dom,
+
+We can have multiple useState
